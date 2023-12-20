@@ -1,3 +1,5 @@
+// Import the useState and useEffect hooks
+import React, { useState, useEffect } from "react";
 import {
   Accordion,
   AccordionButton,
@@ -9,10 +11,6 @@ import {
   Img,
   Text,
 } from "@chakra-ui/react";
-
-import React, { useState, useEffect } from "react";
-
-import football from "../assets/sports/football.png";
 
 const MenuItems = ({ data, Title }) => {
   const [organizedData, setOrganizedData] = useState({});
@@ -40,13 +38,17 @@ const MenuItems = ({ data, Title }) => {
     setOrganizedData(organized);
   }, [data.results]);
 
+  const getFlagUrl = (countryCode) =>
+    `https://flagsapi.com/${countryCode.toUpperCase()}/flat/64.png`;
+
   return (
     <AccordionItem border={"none"}>
       <h2>
         <AccordionButton>
           <Box as="span" flex="1" textAlign="left">
             <Flex gap={5}>
-              <Img src={football}></Img>
+              {/* Use the dynamic flag URL */}
+              <Img src={getFlagUrl("your_default_country_code")} />
               <Text>{Title}</Text>
             </Flex>
           </Box>
@@ -68,7 +70,8 @@ const MenuItems = ({ data, Title }) => {
                   <AccordionButton>
                     <Box as="span" flex="1" textAlign="left">
                       <Flex gap={5}>
-                        <Img src={football}></Img>
+                        {/* Use the dynamic flag URL */}
+                        <Img src={getFlagUrl(country)} />
                         <Text>{`${country} ${
                           info.count > 1 ? `(${info.count})` : ""
                         }`}</Text>
