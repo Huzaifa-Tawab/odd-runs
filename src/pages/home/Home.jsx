@@ -21,10 +21,13 @@ function Home() {
         <Sidebar sportsList={sports}></Sidebar>
         <Box w={"80vw"}>
           <NavBar />
+          <HotMatches
+            upcomingEvents={upcomingEvents}
+            sportsList={sports}
+          ></HotMatches>
           {/* <OrganizeDataByCountry data={data}></OrganizeDataByCountry> */}
         </Box>
       </HStack>
-      <HotMatches upcomingEvents={upcomingEvents} sports={sports}></HotMatches>
     </>
   );
 }

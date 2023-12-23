@@ -5,11 +5,14 @@ import Sidebar from "../../components/Sidebar";
 import { Box, HStack } from "@chakra-ui/react";
 import data from "../../components/test.json";
 import OrganizeDataByCountry from "../../components/OrganizeDataByCountry";
-function HotMatches({ upcomingEvents, sports }) {
+function HotMatches({ upcomingEvents, sportsList }) {
   const [events, setEvents] = useState([]);
+  const [sports, setSports] = useState([]);
+
   useEffect(() => {
     setEvents(upcomingEvents.results);
-  }, [upcomingEvents]);
+    setSports(sportsList.sports);
+  }, [upcomingEvents, sportsList]);
   return (
     <>
       Hot matches
@@ -17,10 +20,19 @@ function HotMatches({ upcomingEvents, sports }) {
         {events &&
           sports &&
           events.map((event) => {
-            return;
-            <>
-              <p>{event.name}</p>;<p>sadasad</p>
-            </>;
+            return (
+              <>
+                <div>
+                  {sports.filter((e) => e.sport_id == event.sport_id).Name ??
+                    ""}
+                  {event.league.name}
+                </div>
+                <div>
+                  {event.home.name} - {event.away.name}
+                </div>
+                <p></p>
+              </>
+            );
           })}
       </div>
     </>
