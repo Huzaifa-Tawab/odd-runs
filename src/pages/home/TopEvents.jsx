@@ -1,12 +1,25 @@
-import React from "react";
-import NavBar from "../../components/Navbar";
+import React, { useEffect, useState } from "react";
+import { Img } from "@chakra-ui/react";
 
-import Sidebar from "../../components/Sidebar";
-import { Box, HStack } from "@chakra-ui/react";
-import data from "../../components/test.json";
-import OrganizeDataByCountry from "../../components/OrganizeDataByCountry";
-function TopEvents() {
-  return <>Hot matches</>;
+function TopEvents({ sportsList }) {
+  const [sports, setSports] = useState([]);
+  useEffect(() => {
+    setSports(sportsList.results);
+  }, [sportsList]);
+
+  return (
+    <>
+      Top events
+      {sports &&
+        sports.map((sport) => {
+          
+        return <></>  {
+            sport.Name;
+          }
+          <Img src={sport.Image} />;
+        })}
+    </>
+  );
 }
 
 export default TopEvents;

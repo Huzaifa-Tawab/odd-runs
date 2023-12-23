@@ -1,36 +1,47 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../../components/Navbar";
+import { Img } from "@chakra-ui/react";
 
-import Sidebar from "../../components/Sidebar";
-import { Box, HStack } from "@chakra-ui/react";
-import data from "../../components/test.json";
-import OrganizeDataByCountry from "../../components/OrganizeDataByCountry";
 function HotMatches({ upcomingEvents, sportsList }) {
   const [events, setEvents] = useState([]);
   const [sports, setSports] = useState([]);
 
   useEffect(() => {
     setEvents(upcomingEvents.results);
-    setSports(sportsList.sports);
+    setSports(sportsList.results);
   }, [upcomingEvents, sportsList]);
+
+  const getTeamUrl = (image_id) =>
+    `https://assets.b365api.com/images/team/s/${image_id}.png`;
+  const getFlagUrl = (countryCode) =>
+    `https://flagsapi.com/${countryCode.toUpperCase()}/flat/32.png`;
   return (
     <>
       Hot matches
       <div>
         {events &&
           sports &&
-          events.map((event) => {
+          events.slice(0, 3).map((event) => {
+            let sportName = "";
+            sports.forEach((e) => {
+              if (e.sport_id == event.sport_id) {
+                sportName = e.Name;
+              }
+            });
             return (
               <>
+                {sportName}
                 <div>
-                  {sports.filter((e) => e.sport_id == event.sport_id).Name ??
-                    ""}
-                  {event.league.name}
+                  {event.league.name.split("")}
+                  <Img src={getFlagUrl(event.league.cc || "Unknown")} />
                 </div>
                 <div>
-                  {event.home.name} - {event.away.name}
+                  <Img src={getTeamUrl(event.home.image_id)} />
+                  {event.home.name} -
+                  <Img src={getTeamUrl(event.away.image_id)} />
+                  {event.away.name}
                 </div>
-                <p></p>
+                {new Date(event.time).toLocaleString()}
+                <p>------------</p>
               </>
             );
           })}

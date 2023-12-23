@@ -9,6 +9,7 @@ import sports from "../../json/sports";
 
 import OrganizeDataByCountry from "../../components/OrganizeDataByCountry";
 import HotMatches from "./HotMatches";
+import TopEvents from "./TopEvents";
 function Home() {
   return (
     <>
@@ -25,6 +26,7 @@ function Home() {
             upcomingEvents={upcomingEvents}
             sportsList={sports}
           ></HotMatches>
+          <TopEvents sportsList={sports}></TopEvents>
           {/* <OrganizeDataByCountry data={data}></OrganizeDataByCountry> */}
         </Box>
       </HStack>

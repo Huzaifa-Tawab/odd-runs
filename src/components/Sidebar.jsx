@@ -17,10 +17,9 @@ import data from "../components/test.json";
 function Sidebar({ sportsList }) {
   const [sports, setSports] = useState([]);
   useEffect(() => {
-    setSports(sportsList.sports);
+    setSports(sportsList.results);
   }, [sportsList]);
   let leauges = 12;
-  console.log(sports);
   return (
     <Stack w={"20vw"} h={"100vh"} bg={"#121432"}>
       <Text
