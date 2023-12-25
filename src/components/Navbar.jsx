@@ -43,10 +43,10 @@ const NavBar = () => {
     <Flex w="100%" p="4" align="center" justify="space-between" bg={"white"}>
       {/* React Router Links */}
       <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/services">Services</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/action">Action</Link>
+      <Link to="/about">Next Matches</Link>
+      <Link to="/services">Dropping odds</Link>
+      <Link to="/contact">Sure Bets</Link>
+      <Link to="/action">Bookmakers</Link>
 
       {/* Stadium Border Input */}
       <InputGroup w={"300px"}>

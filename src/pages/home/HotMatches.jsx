@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Flex, HStack, Img, Stack, Text } from "@chakra-ui/react";
 
 import BookMaker from "../../components/BookMaker";
+import { color } from "framer-motion";
 
 function HotMatches({ upcomingEvents, sportsList }) {
   const [events, setEvents] = useState([]);
@@ -18,8 +19,8 @@ function HotMatches({ upcomingEvents, sportsList }) {
     `https://flagsapi.com/${countryCode.toUpperCase()}/flat/32.png`;
   return (
     <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
-      <Text fontSize={"20px"} fontWeight={"500"}>
-        Hot matches
+      <Text fontSize={"24px"} fontWeight={"600"} textDecoration={"underline #656EF5"}>
+        Hot Matches
       </Text>
 
       <div>
@@ -35,15 +36,15 @@ function HotMatches({ upcomingEvents, sportsList }) {
             return (
               <>
                 <Stack>
-                  <Flex alignItems={"center"} gap={"10px"}>
-                    <Text>{sportName}</Text>
-                    <Text> - </Text>
+                  <Flex alignItems={"center"} gap={"10px"} marginTop={"20px"} padding={"5px"}>
+                    <Text fontSize={"25px"}>{sportName}</Text>
+                    <Text fontSize={"25px"}> - </Text>
                     <Img
                       h={"20px"}
                       w={"20px"}
                       src={getFlagUrl(event.league.cc || "Unknown")}
                     />
-                    <Text>{event.league.name.split("")}</Text>
+                    <Text fontSize={"25px"}>{event.league.name.split("")}</Text>
                   </Flex>
                   <HStack
                     h={"95px"}
@@ -53,32 +54,38 @@ function HotMatches({ upcomingEvents, sportsList }) {
                     border={"1px solid #656EF5"}
                     justifyContent={"space-between"}
                   >
-                    <Stack gap={"20px"}>
+                    <Stack gap={"10px"}>
                       <Flex gap={"5px"}>
                         <Text
                           gap={"5px"}
                           display={"flex"}
                           alignItems={"center"}
-                          fontSize={"16px"}
+                          fontSize={"22px"}
                           fontWeight={"600"}
+                          padding={"10px 0px 0px 10px"}
                         >
                           <Img src={getTeamUrl(event.home.image_id)} />
                           {event.home.name}
                         </Text>
-                        <Text> - </Text>
+                        <Text fontSize={"22px"} 
+                          padding={"10px 0px 0px 10px"}
+                          >   -   </Text>
                         <Text
                           gap={"5px"}
                           display={"flex"}
                           alignItems={"center"}
-                          fontSize={"16px"}
+                          fontSize={"22px"}
                           fontWeight={"600"}
+                          padding={"10px 0px 0px 10px"}
+
+
                         >
                           <Img src={getTeamUrl(event.away.image_id)} />
                           {event.away.name}
                         </Text>
                       </Flex>
                       <Text
-                        TextAlign={"center"}
+                        textAlign={"center"}
                         w={"120px"}
                         padding={"5px"}
                         borderRadius={"30px"}
