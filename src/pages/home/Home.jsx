@@ -24,7 +24,23 @@ function Home() {
         <Box w={"80vw"}>
           <NavBar />
           <HStack>
-            <Box w={"70%"} overflowY={"scroll"} h={"85vh"}>
+            <Box
+              w={"70%"}
+              overflowY={"scroll"}
+              h={"85vh"}
+              css={{
+                "&::-webkit-scrollbar": {
+                  width: "4px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  width: "6px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "#656EF5",
+                  borderRadius: "24px",
+                },
+              }}
+            >
               <HotMatches
                 upcomingEvents={upcomingEvents}
                 sportsList={sports}
