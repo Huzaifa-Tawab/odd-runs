@@ -17,7 +17,7 @@ import data from "../components/test.json";
 function Sidebar() {
   let leauges = 12;
   return (
-    <Stack w={"20vw"} h={"100vh"} bg={"#121432"}>
+    <Stack w={"30vw"} h={"100%"} bg={"#121432"}>
       <Text
         color="var(--White, #FFF)"
         textAlign="center"

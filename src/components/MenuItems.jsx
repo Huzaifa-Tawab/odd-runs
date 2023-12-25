@@ -39,7 +39,7 @@ const MenuItems = ({ data, Title }) => {
   }, [data.results]);
 
   const getFlagUrl = (countryCode) =>
-    `https://flagsapi.com/${countryCode.toUpperCase()}/flat/64.png`;
+    `https://flagsapi.com/${countryCode.toUpperCase()}/flat/32.png`;
 
   return (
     <AccordionItem border={"none"}>
