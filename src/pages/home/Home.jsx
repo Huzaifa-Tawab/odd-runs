@@ -23,15 +23,21 @@ function Home() {
         <Sidebar sportsList={sports}></Sidebar>
         <Box w={"80vw"}>
           <NavBar />
-          <HotMatches
-            upcomingEvents={upcomingEvents}
-            sportsList={sports}
-          ></HotMatches>
-          <TopEvents sportsList={sports}></TopEvents>
-          <NextMatches sportsList={sports}></NextMatches>
+          <HStack>
+            <Box w={"70%"} overflowY={"scroll"} h={"85vh"}>
+              <HotMatches
+                upcomingEvents={upcomingEvents}
+                sportsList={sports}
+              ></HotMatches>
+              <TopEvents sportsList={sports}></TopEvents>
+              <NextMatches sportsList={sports}></NextMatches>
+            </Box>
+            <Box w={"30%"} h={"100%"} bg={"black"}></Box>
+          </HStack>
 
           {/* <OrganizeDataByCountry data={data}></OrganizeDataByCountry> */}
         </Box>
+        {/* Right side */}
       </HStack>
     </>
   );

@@ -5,7 +5,16 @@ import App from "./App.jsx";
 import "./index.css";
 import "@fontsource/poppins";
 import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/500.css";
 const colors = {
+  styles: {
+    global: {
+      body: {
+        color: "#121432",
+        fontFamily: "Poppins",
+      },
+    },
+  },
   fonts: {
     body: "Poppins, sans-serif",
     heading: "Poppins, sans-serif",
