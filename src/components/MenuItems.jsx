@@ -46,9 +46,9 @@ const MenuItems = ({ data, Title, Image }) => {
       <h2>
         <AccordionButton>
           <Box as="span" flex="1" textAlign="left">
-            <Flex gap={5}>
+            <Flex alignItems={"center"} gap={5}>
               {/* Use the dynamic flag URL */}
-              <Img src={Image} />
+              <Img w={"15px"} h={"15px"} src={Image} />
               <Text>{Title}</Text>
             </Flex>
           </Box>
