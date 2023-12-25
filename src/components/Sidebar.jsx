@@ -10,11 +10,15 @@ import {
   Accordion,
 } from "@chakra-ui/react";
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MenuItems from "./MenuItems";
 import data from "../components/test.json";
 
-function Sidebar() {
+function Sidebar({ sportsList }) {
+  const [sports, setSports] = useState([]);
+  useEffect(() => {
+    setSports(sportsList.results);
+  }, [sportsList]);
   let leauges = 12;
   return (
     <Stack w={"30vw"} h={"100%"} bg={"#121432"}>
@@ -74,7 +78,12 @@ function Sidebar() {
       </Box>
       {/* Sports Menus */}
       <Accordion allowMultiple color={"white"} padding={"0px 20px"}>
-        <MenuItems data={data} Title="FootBall" />
+        {sports &&
+          sports.map((sport) => {
+            return (
+              <MenuItems data={data} Title={sport.Name} Image={sport.Image} />
+            );
+          })}
       </Accordion>
     </Stack>
   );

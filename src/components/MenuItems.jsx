@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-const MenuItems = ({ data, Title }) => {
+const MenuItems = ({ data, Title, Image }) => {
   const [organizedData, setOrganizedData] = useState({});
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const MenuItems = ({ data, Title }) => {
           <Box as="span" flex="1" textAlign="left">
             <Flex gap={5}>
               {/* Use the dynamic flag URL */}
-              <Img src={getFlagUrl("your_default_country_code")} />
+              <Img src={Image} />
               <Text>{Title}</Text>
             </Flex>
           </Box>

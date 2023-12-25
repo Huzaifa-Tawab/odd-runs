@@ -1,0 +1,138 @@
+{
+  "success": 1,
+  "pager": {
+    "page": 1,
+    "per_page": 50,
+    "total": 47764
+  },
+  "results": [
+    {
+      "id": "3915866",
+      "sport_id": "12",
+      "time": "1633184100",
+      "time_status": "0",
+      "league": {
+        "id": "521",
+        "name": "Belgium Super League Women",
+        "cc": "be"
+      },
+      "home": {
+        "id": "240427",
+        "name": "Club Brugge Women",
+        "image_id": "178250",
+        "cc": "be"
+      },
+      "away": {
+        "id": "8496",
+        "name": "Genk Women",
+        "image_id": "218146",
+        "cc": "be"
+      },
+      "ss": null
+    },
+    {
+      "id": "3305136",
+      "sport_id": "12",
+      "time": "1633185000",
+      "time_status": "0",
+      "league": {
+        "id": "593",
+        "name": "Sweden 2.div Norra Svealand",
+        "cc": "se"
+      },
+      "home": {
+        "id": "60607",
+        "name": "Enkopings SK",
+        "image_id": "1780",
+        "cc": "se"
+      },
+      "away": {
+        "id": "46782",
+        "name": "Kvarnsvedens IK",
+        "image_id": "22305",
+        "cc": "se"
+      },
+      "ss": null,
+      "bet365_id": "108261547"
+    },
+    {
+      "id": "3743264",
+      "sport_id": "12",
+      "time": "1633185000",
+      "time_status": "0",
+      "league": {
+        "id": "17883",
+        "name": "Austria Regionalliga Tirol",
+        "cc": "at"
+      },
+      "home": {
+        "id": "48401",
+        "name": "FC Kitzbuhel",
+        "image_id": "53058",
+        "cc": "at"
+      },
+      "away": {
+        "id": "51978",
+        "name": "SV Telfs",
+        "image_id": "396572",
+        "cc": "at"
+      },
+      "ss": null
+    },
+    {
+      "id": "3944159",
+      "sport_id": "12",
+      "time": "1633185000",
+      "time_status": "0",
+      "league": {
+        "id": "205",
+        "name": "Spain Tercera Group 3",
+        "cc": "es"
+      },
+      "home": {
+        "id": "298292",
+        "name": "UC Cartes",
+        "image_id": "610156",
+        "cc": "es"
+      },
+      "away": {
+        "id": "49816",
+        "name": "Barreda",
+        "image_id": "369174",
+        "cc": "es"
+      },
+      "ss": null
+    },
+    {
+      "id": "4140639",
+      "sport_id": "12",
+      "time": "1633185000",
+      "time_status": "0",
+      "league": {
+        "id": "8626",
+        "name": "Mauritania Division 1",
+        "cc": "mr"
+      },
+      "home": {
+        "id": "196864",
+        "name": "ASC Tevragh Zeine",
+        "image_id": "555274",
+        "cc": "mr"
+      },
+      "o_home": {
+        "id": "370723",
+        "name": "FC Tevragh Zeina",
+        "image_id": "555274",
+        "cc": "mr"
+      },
+      "away": {
+        "id": "319103",
+        "name": "AS Douanes Nouakchott",
+        "image_id": "571633",
+        "cc": "mr"
+      },
+      "ss": null,
+      "bet365_id": "108744140"
+    }
+  ]
+}
