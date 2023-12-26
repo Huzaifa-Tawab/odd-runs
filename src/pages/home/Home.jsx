@@ -47,13 +47,12 @@ function Home() {
                 sportsList={sports}
               ></HotMatches>
               <TopEvents sportsList={sports}></TopEvents>
-              <NextMatches sportsList={sports}></NextMatches>
+              <NextMatches upcomingEvents={upcomingEvents}></NextMatches>
             </Box>
-        {/* Right side */}
+            {/* Right side */}
 
-            <Box w={"30%"} h={"100%"} >
-          <RightSidebar/>
-
+            <Box w={"30%"} h={"100%"}>
+              <RightSidebar />
             </Box>
           </HStack>
 
