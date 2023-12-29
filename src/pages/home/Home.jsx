@@ -50,7 +50,7 @@ function Home() {
       {mobileView ? <></> : <Sidebar sportsList={sports} />}
       <Box w={mobileView ? "100vw" : "80vw"}>
         <NavBar />
-        <HStack>
+        <HStack alignItems={"end"}>
           <Box
             w={mobileView ? "100%" : "80%"}
             overflowY={"scroll"}

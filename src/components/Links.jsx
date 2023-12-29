@@ -13,27 +13,39 @@ function Links() {
       <Divider marginBottom={"10px"} />
       <Flex gap={"5px"} padding={"5px"}>
         <Img src={dropodds} />
-        <Text fontSize={"15px"}>Dropping Odds</Text>
+        <Text fontSize={"14px"} textStyle={"regular"}>
+          Dropping Odds
+        </Text>
       </Flex>
       <Flex gap={"5px"} padding={"5px"}>
         <Img src={blockodds} />
-        <Text fontSize={"15px"}>Blocked Odds</Text>
+        <Text fontSize={"14px"} textStyle={"regular"}>
+          Blocked Odds
+        </Text>
       </Flex>
       <Flex gap={"5px"} padding={"5px"}>
         <Img src={valuebets} />
-        <Text fontSize={"15px"}>Value Bets</Text>
+        <Text fontSize={"14px"} textStyle={"regular"}>
+          Value Bets
+        </Text>
       </Flex>
       <Flex gap={"5px"} padding={"5px"}>
         <Img src={hotmatches} />
-        <Text fontSize={"15px"}>Hot Matches</Text>
+        <Text fontSize={"14px"} textStyle={"regular"}>
+          Hot Matches
+        </Text>
       </Flex>
       <Flex gap={"5px"} padding={"5px"}>
         <Img src={archive} />
-        <Text fontSize={"15px"}>Archived Results</Text>
+        <Text fontSize={"14px"} textStyle={"regular"}>
+          Archived Results
+        </Text>
       </Flex>
       <Flex gap={"5px"} padding={"5px"}>
         <Img src={standings} />
-        <Text fontSize={"15px"}>Standing</Text>
+        <Text fontSize={"14px"} textStyle={"regular"}>
+          Standing
+        </Text>
       </Flex>
     </>
   );

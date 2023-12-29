@@ -33,7 +33,7 @@ function RightSidebar() {
    </Box> */}
       <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
         <Flex padding={"10px"}>
-          <Text fontSize={"16px"} fontWeight={"600"}>
+          <Text fontSize={"16px"} textStyle={"medium"}>
             Betting Tools
           </Text>
         </Flex>
