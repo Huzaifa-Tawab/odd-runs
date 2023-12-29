@@ -21,8 +21,8 @@ const LeagueTable = () => {
       try {
         const response = await axios.get(
           "https://api.b365api.com/v3/league/table?token=179024-3d6U7zylacO78f&league_id=94"
-        ); // Replace with your API endpoint
-        setTableData(response.data);
+        );
+        setTableData(response.data.results[0]?.overall?.tables[0]?.rows || []);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -48,31 +48,39 @@ const LeagueTable = () => {
   );
 
   return (
-    <Box p="4">
-      <h1>Football League Table</h1>
-      {loading ? (
-        <CircularProgress isIndeterminate color="teal.500" />
-      ) : (
-        <Table variant="striped" colorScheme="teal" style={{ width: "100%" }}>
-          <Thead>
-            <Tr>
-              {columns.map((column) => (
-                <Th key={column.Header}>{column.Header}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {tableData.map((row) => (
-              <Tr key={row.pos}>
+    <ChakraProvider>
+      <Box p="4">
+        <h1>Football League Table</h1>
+        {loading ? (
+          <CircularProgress isIndeterminate color="teal.500" />
+        ) : (
+          <Table variant="striped" colorScheme="teal" style={{ width: "100%" }}>
+            <Thead>
+              <Tr>
                 {columns.map((column) => (
-                  <Td key={column.Header}>{row[column.accessor]}</Td>
+                  <Th key={column.Header}>{column.Header}</Th>
                 ))}
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      )}
-    </Box>
+            </Thead>
+            <Tbody>
+              {tableData.map((row) => (
+                <Tr key={row.pos}>
+                  {columns.map((column) => (
+                    <Td key={column.Header}>
+                      {column.accessor.includes(".")
+                        ? row[column.accessor.split(".")[0]][
+                            column.accessor.split(".")[1]
+                          ]
+                        : row[column.accessor]}
+                    </Td>
+                  ))}
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        )}
+      </Box>
+    </ChakraProvider>
   );
 };
 
