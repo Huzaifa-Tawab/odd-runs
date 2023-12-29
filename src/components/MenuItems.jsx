@@ -9,6 +9,7 @@ import {
   Box,
   Flex,
   Img,
+  Link,
   Text,
 } from "@chakra-ui/react";
 import countries from "../json/countries";
@@ -93,19 +94,21 @@ const MenuItems = ({ data, Title, Image }) => {
                 >
                   {Object.entries(info.leagues).map(([leagueName, details]) => (
                     <div key={leagueName}>
-                      <Text
-                        padding={"5px"}
-                        margin={"5px 0px"}
-                        borderRadius={"20px"}
-                        bg={"#656EF51A"}
-                        textAlign={"center"}
-                        fontSize={"10px"}
-                        textStyle={"regular"}
-                      >
-                        {`${leagueName} ${
-                          details.length > 1 ? `(${details.length})` : ""
-                        }`}
-                      </Text>
+                      <a href={`/test/${leagueName}`}>
+                        <Text
+                          padding={"5px"}
+                          margin={"5px 0px"}
+                          borderRadius={"20px"}
+                          bg={"#656EF51A"}
+                          textAlign={"center"}
+                          fontSize={"10px"}
+                          textStyle={"regular"}
+                        >
+                          {`${leagueName} ${
+                            details.length > 1 ? `(${details.length})` : ""
+                          }`}
+                        </Text>
+                      </a>
                     </div>
                   ))}
                 </AccordionPanel>
