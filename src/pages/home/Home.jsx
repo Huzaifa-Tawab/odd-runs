@@ -11,6 +11,7 @@ import OrganizeDataByCountry from "../../components/OrganizeDataByCountry";
 import HotMatches from "./HotMatches";
 import TopEvents from "./TopEvents";
 import NextMatches from "./NextMatches";
+import RightSidebar from "../../components/RightSidebar";
 function Home() {
   return (
     <>
@@ -46,14 +47,17 @@ function Home() {
                 sportsList={sports}
               ></HotMatches>
               <TopEvents sportsList={sports}></TopEvents>
-              <NextMatches sportsList={sports}></NextMatches>
+              <NextMatches upcomingEvents={upcomingEvents}></NextMatches>
             </Box>
-            <Box w={"30%"} h={"100%"} bg={"black"}></Box>
+            {/* Right side */}
+
+            <Box w={"30%"} h={"100%"}>
+              <RightSidebar />
+            </Box>
           </HStack>
 
           {/* <OrganizeDataByCountry data={data}></OrganizeDataByCountry> */}
         </Box>
-        {/* Right side */}
       </HStack>
     </>
   );
