@@ -141,20 +141,22 @@ const NavBar = () => {
         </InputGroup>
       )}
 
-      <BellIcon boxSize={24} />
+      <BellIcon boxSize={"25px"} />
       {/* Circular Avatar and Dropdown */}
       <Menu>
         <MenuButton>
           <Flex align="center" cursor="pointer">
-            <Avatar name="User" size="sm" mr="2" />
+            <Avatar name="S" size="sm" />
             <span
               style={{
                 color: "black",
-                fontSize: "1rem", // Default font size in pixels
+                fontSize: "14px",
+                margin: "0px 0px 0px 5px",
+                // Default font size in pixels
                 // Responsive font size using media queries in pixels
               }}
             >
-              Skrzypek391 <ChevronDownIcon boxSize={24} />
+              Skrzypek391 <ChevronDownIcon boxSize={"25px"} />
             </span>
           </Flex>
         </MenuButton>
