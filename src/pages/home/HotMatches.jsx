@@ -67,17 +67,32 @@ function HotMatches({ upcomingEvents, sportsList }) {
             });
             return (
               <>
-                <Stack gap={"5px"}>
-                  <Flex alignItems={"center"} gap={"10px"} marginTop={"18px"}>
+                <Stack gap={"10px"}>
+                  <Flex
+                    alignItems={"center"}
+                    gap={"10px"}
+                    marginTop={"10px"}
+                    marginLeft={"5px"}
+                  >
                     <Img src={SportsIMG[sportName]} />
-                    <Text fontSize={"18px"}>{sportName}</Text>
-                    <Text fontSize={"25px"}> - </Text>
+                    <Text fontSize={mobileView ? "14px" : "16px"}>
+                      {sportName}
+                    </Text>
+                    <Text
+                      fontSize={"18px"}
+                      textStyle={"bold"}
+                      padding={"5px 0px 0px 0px"}
+                    >
+                      -
+                    </Text>
                     <Img
                       h={"20px"}
                       w={"20px"}
                       src={getFlagUrl(event.league.cc || "Unknown")}
                     />
-                    <Text fontSize={"16px"}>{event.league.name.split("")}</Text>
+                    <Text fontSize={mobileView ? "12px" : "16px"}>
+                      {event.league.name.split("")}
+                    </Text>
                   </Flex>
                   <HStack
                     h={mobileView ? "100%" : "100px"}
@@ -94,24 +109,25 @@ function HotMatches({ upcomingEvents, sportsList }) {
                           gap={"5px"}
                           display={"flex"}
                           alignItems={"center"}
-                          fontSize={"14px"}
+                          fontSize={mobileView ? "10px" : "14px"}
                           textStyle={"bold"}
-                          padding={"10px 0px 0px 10px"}
                         >
                           <Img src={getTeamUrl(event.home.image_id)} />
                           {event.home.name}
                         </Text>
-                        <Text fontSize={"22px"} padding={"10px 0px 0px 10px"}>
-                          {" "}
-                          -{" "}
+                        <Text
+                          fontSize={"18px"}
+                          textStyle={"bold"}
+                          padding={"0px 10px"}
+                        >
+                          -
                         </Text>
                         <Text
                           gap={"5px"}
                           display={"flex"}
                           alignItems={"center"}
-                          fontSize={"14px"}
+                          fontSize={mobileView ? "10px" : "14px"}
                           textStyle={"bold"}
-                          padding={"10px 0px 0px 10px"}
                         >
                           <Img src={getTeamUrl(event.away.image_id)} />
                           {event.away.name}
@@ -122,8 +138,10 @@ function HotMatches({ upcomingEvents, sportsList }) {
                         w={"120px"}
                         padding={"5px"}
                         borderRadius={"30px"}
+                        fontSize={"13px"}
+                        textStyle={"medium"}
                         color={"#656EF5"}
-                        bg={"#656FF513"}
+                        bg={"rgba(101,110,245,0.10)"}
                       >
                         {new Date(event.time).toLocaleString()}
                       </Text>
