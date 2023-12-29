@@ -17,11 +17,11 @@ function NextMatches({ upcomingEvents }) {
     <>
       <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
         <Text
-          padding={"10px"}
-          textDecoration={"underline #656EF5"}
-          fontSize={"25px"}
-          fontWeight={"600"}
-          marginBottom={"20px"}
+          w={"109px"}
+          fontSize={"16px"}
+          textStyle={"medium"}
+          paddingBottom={"5px"}
+          borderBottom={"2px solid  #656EF5"}
         >
           Next Matches
         </Text>
@@ -37,8 +37,7 @@ function NextMatches({ upcomingEvents }) {
                         gap={"5px"}
                         display={"flex"}
                         alignItems={"center"}
-                        fontSize={"22px"}
-                        fontWeight={"400"}
+                        fontSize={"16px"}
                         padding={"10px 0px 0px 10px"}
                       >
                         <Img src={football} />
@@ -52,8 +51,7 @@ function NextMatches({ upcomingEvents }) {
                         gap={"5px"}
                         display={"flex"}
                         alignItems={"center"}
-                        fontSize={"22px"}
-                        fontWeight={"400"}
+                        fontSize={"16px"}
                         padding={"10px 0px 0px 10px"}
                       >
                         <Img src={getFlagUrl(match.league.cc || "")} />
@@ -62,11 +60,12 @@ function NextMatches({ upcomingEvents }) {
                     </Flex>
                     <Text
                       textAlign={"center"}
-                      w={"120px"}
-                      padding={"10px"}
+                      padding={"8px 15px"}
                       borderRadius={"30px"}
                       color={"#656EF5"}
                       bg={"#656FF513"}
+                      fontSize={"13px"}
+                      textStyle={"medium"}
                     >
                       Today
                     </Text>
@@ -85,15 +84,15 @@ function NextMatches({ upcomingEvents }) {
                         gap={"5px"}
                         display={"flex"}
                         alignItems={"center"}
-                        fontSize={"20px"}
-                        fontWeight={"600"}
+                        fontSize={"16px"}
+                        textStyle={"medium"}
                       >
                         {match.home.name}
                         <Img src={getTeamUrl(match.home.image_id)} />
                       </Text>
                       <Text
-                        fontWeight={"600"}
-                        fontSize={"20px"}
+                        textStyle={"bold"}
+                        fontSize={"16px"}
                         color={"#656EF5"}
                       >
                         0 : 2{" "}
@@ -102,14 +101,19 @@ function NextMatches({ upcomingEvents }) {
                         gap={"5px"}
                         display={"flex"}
                         alignItems={"center"}
-                        fontSize={"20px"}
-                        fontWeight={"600"}
+                        fontSize={"16px"}
+                        textStyle={"medium"}
                       >
                         <Img src={getTeamUrl(match.away.image_id)} />
                         {match.away.name}
                       </Text>
                     </Flex>
-                    <BookMakerLight id={1} per={2.82} />
+                    <Flex gap={"5px"}>
+                      <BookMakerLight id={1} per={2.82} />
+                      <BookMakerLight id={1} per={2.82} />
+                      <BookMakerLight id={1} per={2.82} />
+                      <BookMakerLight id={1} per={2.82} />
+                    </Flex>
                   </HStack>
                 </Stack>
               </>

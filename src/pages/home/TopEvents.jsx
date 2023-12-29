@@ -36,12 +36,14 @@ function TopEvents({ sportsList }) {
       <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
         <Tabs>
           <TabList>
-            <Tab fontSize={"22px"}>Top Events</Tab>
+            <Tab fontSize={"16px"} textStyle={"medium"}>
+              Top Events
+            </Tab>
             {sports &&
               sports.map((sport) => {
                 return (
                   <>
-                    <Tab fontSize={"22px"}>
+                    <Tab fontSize={"13.3px"}>
                       <Img onc src={sport.Image} marginRight={"5px"} />
                       {sport.Name}
                     </Tab>
@@ -54,8 +56,8 @@ function TopEvents({ sportsList }) {
             <TabPanel>
               {/* Top Event */}
               <TableContainer>
-                <Table variant="striped" colorScheme="teal">
-                  <Tbody fontSize={"20px"} padding={"5px"} margin={"10px"}>
+                <Table variant="striped" colorScheme="pink">
+                  <Tbody fontSize={"16px"} padding={"5px"} margin={"10px"}>
                     <Tr>
                       <Td>
                         {" "}
@@ -134,7 +136,7 @@ function TopEvents({ sportsList }) {
                   <>
                     <TabPanel>
                       <TableContainer>
-                        <Table variant="striped" colorScheme="teal">
+                        <Table variant="striped" colorScheme="pink">
                           <Tbody>
                             {leagues &&
                               leagues.results
