@@ -19,7 +19,7 @@ const MenuItems = ({ data, Title, Image }) => {
 
   useEffect(() => {
     const organized = data.results.reduce((acc, result) => {
-      const country = result.league.cc || "Unknown";
+      const country = result.league.cc != null ? result.league.cc : "Unknown";
       const leagueName = result.league.name;
       const key = country;
 
