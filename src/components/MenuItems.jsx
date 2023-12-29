@@ -50,7 +50,9 @@ const MenuItems = ({ data, Title, Image }) => {
             <Flex alignItems={"center"} gap={5}>
               {/* Use the dynamic flag URL */}
               <Img w={"15px"} h={"15px"} src={Image} />
-              <Text>{Title}</Text>
+              <Text fontSize={"16px"} textStyle={"regular"}>
+                {Title}
+              </Text>
             </Flex>
           </Box>
           <AccordionIcon />
@@ -70,10 +72,10 @@ const MenuItems = ({ data, Title, Image }) => {
                 <h2>
                   <AccordionButton>
                     <Box as="span" flex="1" textAlign="left">
-                      <Flex gap={5}>
+                      <Flex gap={"5px"}>
                         {/* Use the dynamic flag URL */}
-                        <Img src={getFlagUrl(country)} />
-                        <Text>
+                        <Img w={"20px"} h={"20px"} src={getFlagUrl(country)} />
+                        <Text fontSize={"12px"} textStyle={"regular"}>
                           {`${countries[country]} ${
                             info.count > 1 ? `(${info.count})` : ""
                           }`}
@@ -87,17 +89,18 @@ const MenuItems = ({ data, Title, Image }) => {
                   bg={"white"}
                   color={"black"}
                   borderRadius={"20px"}
-                  margin={"10px"}
                   pb={4}
                 >
                   {Object.entries(info.leagues).map(([leagueName, details]) => (
                     <div key={leagueName}>
                       <Text
                         padding={"5px"}
-                        margin={"10px 5px"}
+                        margin={"5px 0px"}
                         borderRadius={"20px"}
                         bg={"#656EF51A"}
                         textAlign={"center"}
+                        fontSize={"10px"}
+                        textStyle={"regular"}
                       >
                         {`${leagueName} ${
                           details.length > 1 ? `(${details.length})` : ""
