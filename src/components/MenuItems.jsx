@@ -11,6 +11,7 @@ import {
   Img,
   Text,
 } from "@chakra-ui/react";
+import countries from "../json/countries";
 
 const MenuItems = ({ data, Title, Image }) => {
   const [organizedData, setOrganizedData] = useState({});
@@ -72,9 +73,11 @@ const MenuItems = ({ data, Title, Image }) => {
                       <Flex gap={5}>
                         {/* Use the dynamic flag URL */}
                         <Img src={getFlagUrl(country)} />
-                        <Text>{`${country} ${
-                          info.count > 1 ? `(${info.count})` : ""
-                        }`}</Text>
+                        <Text>
+                          {`${countries[country]} ${
+                            info.count > 1 ? `(${info.count})` : ""
+                          }`}
+                        </Text>
                       </Flex>
                     </Box>
                     <AccordionIcon />
@@ -91,9 +94,10 @@ const MenuItems = ({ data, Title, Image }) => {
                     <div key={leagueName}>
                       <Text
                         padding={"5px"}
-                        margin={"5px"}
+                        margin={"10px 5px"}
                         borderRadius={"20px"}
-                        bg={"teal"}
+                        bg={"#656EF51A"}
+                        textAlign={"center"}
                       >
                         {`${leagueName} ${
                           details.length > 1 ? `(${details.length})` : ""

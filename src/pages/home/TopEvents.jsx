@@ -42,7 +42,7 @@ function TopEvents({ sportsList }) {
                 return (
                   <>
                     <Tab fontSize={"22px"}>
-                      <Img onc src={sport.Image} />
+                      <Img onc src={sport.Image} marginRight={"5px"} />
                       {sport.Name}
                     </Tab>
                   </>

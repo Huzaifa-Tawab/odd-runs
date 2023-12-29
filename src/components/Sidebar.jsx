@@ -21,7 +21,7 @@ function Sidebar({ sportsList }) {
   }, [sportsList]);
   let leauges = 12;
   return (
-    <Stack w={"25vw"} h={"100%"} minH={"100vh"} bg={"#121432"}>
+    <Stack w={"20vw"} h={"100%"} minH={"100vh"} bg={"#121432"}>
       <Text
         color="var(--White, #FFF)"
         textAlign="center"

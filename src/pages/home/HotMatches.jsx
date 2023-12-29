@@ -3,6 +3,7 @@ import { Box, Flex, HStack, Img, Stack, Text } from "@chakra-ui/react";
 
 import BookMaker from "../../components/BookMaker";
 import { color } from "framer-motion";
+import SportsIMG from "../../json/sportsImg";
 
 function HotMatches({ upcomingEvents, sportsList }) {
   const [events, setEvents] = useState([]);
@@ -19,7 +20,11 @@ function HotMatches({ upcomingEvents, sportsList }) {
     `https://flagsapi.com/${countryCode.toUpperCase()}/flat/32.png`;
   return (
     <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
-      <Text fontSize={"24px"} fontWeight={"600"} textDecoration={"underline #656EF5"}>
+      <Text
+        fontSize={"24px"}
+        fontWeight={"600"}
+        textDecoration={"underline #656EF5"}
+      >
         Hot Matches
       </Text>
 
@@ -36,19 +41,24 @@ function HotMatches({ upcomingEvents, sportsList }) {
             return (
               <>
                 <Stack>
-                  <Flex alignItems={"center"} gap={"10px"} marginTop={"20px"} padding={"5px"}>
-                    <Text fontSize={"25px"}>{sportName}</Text>
+                  <Flex
+                    alignItems={"center"}
+                    gap={"10px"}
+                    marginTop={"20px"}
+                    padding={"5px"}
+                  >
+                    <Img src={SportsIMG[sportName]} />
+                    <Text fontSize={"16px"}>{sportName}</Text>
                     <Text fontSize={"25px"}> - </Text>
                     <Img
                       h={"20px"}
                       w={"20px"}
                       src={getFlagUrl(event.league.cc || "Unknown")}
                     />
-                    <Text fontSize={"25px"}>{event.league.name.split("")}</Text>
+                    <Text fontSize={"16px"}>{event.league.name.split("")}</Text>
                   </Flex>
                   <HStack
                     h={"95px"}
-                    margin={"10px"}
                     padding={"5px"}
                     borderRadius={"10px"}
                     border={"1px solid #656EF5"}
@@ -60,25 +70,24 @@ function HotMatches({ upcomingEvents, sportsList }) {
                           gap={"5px"}
                           display={"flex"}
                           alignItems={"center"}
-                          fontSize={"22px"}
+                          fontSize={"16px"}
                           fontWeight={"600"}
                           padding={"10px 0px 0px 10px"}
                         >
                           <Img src={getTeamUrl(event.home.image_id)} />
                           {event.home.name}
                         </Text>
-                        <Text fontSize={"22px"} 
-                          padding={"10px 0px 0px 10px"}
-                          >   -   </Text>
+                        <Text fontSize={"22px"} padding={"10px 0px 0px 10px"}>
+                          {" "}
+                          -{" "}
+                        </Text>
                         <Text
                           gap={"5px"}
                           display={"flex"}
                           alignItems={"center"}
-                          fontSize={"22px"}
+                          fontSize={"16px"}
                           fontWeight={"600"}
                           padding={"10px 0px 0px 10px"}
-
-
                         >
                           <Img src={getTeamUrl(event.away.image_id)} />
                           {event.away.name}

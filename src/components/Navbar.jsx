@@ -30,7 +30,7 @@ const Link = ({ to, children }) => {
         mx: "2",
         cursor: "pointer",
         textDecoration: "none",
-        fontSize: "1.5rem",
+        fontSize: "1.2rem",
       }}
     >
       {children}

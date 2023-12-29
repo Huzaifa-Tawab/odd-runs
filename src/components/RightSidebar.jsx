@@ -1,13 +1,13 @@
-import { Box, Flex, Img, Text } from '@chakra-ui/react'
-import React from 'react'
-import CouponCard from './Couponcard'
-import Links from './Links'
-import doc from '../assets/Icons/doc.png'
+import { Box, Flex, Img, Text } from "@chakra-ui/react";
+import React from "react";
+import CouponCard from "./Couponcard";
+import Links from "./Links";
+import doc from "../assets/Icons/doc.png";
 
 function RightSidebar() {
   return (
-   <>
-   <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
+    <>
+      {/* <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
     <Flex gap={"10px"} alignItems={"center"} marginBottom={"10px"}>
         <Img src={doc} w={"25px"} h={"25px"}/>
         <Text fontSize={"24px"} fontWeight={"600"}>My Coupon</Text>
@@ -30,16 +30,17 @@ function RightSidebar() {
     </Flex>
     <CouponCard/>
 
-   </Box>
-   <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"} >
-    <Flex padding={'10px'}>
-        <Text fontSize={'22px'} fontWeight={'600'}>Betting Tools</Text>
+   </Box> */}
+      <Box bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"}>
+        <Flex padding={"10px"}>
+          <Text fontSize={"16px"} fontWeight={"600"}>
+            Betting Tools
+          </Text>
         </Flex>
-        <Links/>
-        </Box>
-   
-   </>
-  )
+        <Links />
+      </Box>
+    </>
+  );
 }
 
-export default RightSidebar
+export default RightSidebar;
