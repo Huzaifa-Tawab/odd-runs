@@ -143,7 +143,7 @@ function HotMatches({ upcomingEvents, sportsList }) {
                         color={"#656EF5"}
                         bg={"rgba(101,110,245,0.10)"}
                       >
-                        {new Date(event.time).toLocaleString()}
+                        {new Date(event.time * 1000).toLocaleTimeString()}
                       </Text>
                     </Stack>
                     <Flex gap={"5px"}>

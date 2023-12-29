@@ -12,13 +12,42 @@ import {
 import { PhoneIcon, AddIcon, WarningIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState } from "react";
 import MenuItems from "./MenuItems";
-import data from "../components/test.json";
+import test from "../components/test.json";
+import axios from "axios";
 
 function Sidebar({ sportsList }) {
   const [sports, setSports] = useState([]);
+  const [data, setData] = useState({});
+
   useEffect(() => {
     setSports(sportsList.results);
+    getSportsData();
   }, [sportsList]);
+  function getSportsData() {
+    sports.forEach((sport) => {
+      console.log(sport);
+      console.log(
+        get(`league?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`)
+      );
+    });
+  }
+  function get(uri) {
+    let config = {
+      method: "GET",
+      maxBodyLength: Infinity,
+      url: `https://api.b365api.com/v3/${uri}`,
+      headers: {},
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   let leauges = 12;
   return (
     <Stack w={"20vw"} h={"100%"} minH={"100vh"} bg={"#121432"}>
@@ -81,7 +110,7 @@ function Sidebar({ sportsList }) {
         {sports &&
           sports.map((sport) => {
             return (
-              <MenuItems data={data} Title={sport.Name} Image={sport.Image} />
+              <MenuItems data={test} Title={sport.Name} Image={sport.Image} />
             );
           })}
       </Accordion>
