@@ -9,7 +9,6 @@ import {
   Box,
   Flex,
   Img,
-  Link,
   Text,
 } from "@chakra-ui/react";
 import countries from "../json/countries";
@@ -19,7 +18,7 @@ const MenuItems = ({ data, Title, Image }) => {
 
   useEffect(() => {
     const organized = data.results.reduce((acc, result) => {
-      const country = result.league.cc || "Unknown";
+      const country = result.league.cc != null ? result.league.cc : "World";
       const leagueName = result.league.name;
       const key = country;
 
@@ -77,7 +76,7 @@ const MenuItems = ({ data, Title, Image }) => {
                         {/* Use the dynamic flag URL */}
                         <Img w={"20px"} h={"20px"} src={getFlagUrl(country)} />
                         <Text fontSize={"12px"} textStyle={"regular"}>
-                          {`${countries[country]} ${
+                          {`${countries[country] || "World"} ${
                             info.count > 1 ? `(${info.count})` : ""
                           }`}
                         </Text>
@@ -94,7 +93,11 @@ const MenuItems = ({ data, Title, Image }) => {
                 >
                   {Object.entries(info.leagues).map(([leagueName, details]) => (
                     <div key={leagueName}>
-                      <a href={`/test/${leagueName}`}>
+                      <a
+                        href={`/${Title}/${
+                          countries[country] || "World"
+                        }/${leagueName}`}
+                      >
                         <Text
                           padding={"5px"}
                           margin={"5px 0px"}

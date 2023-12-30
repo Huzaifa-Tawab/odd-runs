@@ -18,35 +18,53 @@ import axios from "axios";
 function Sidebar({ sportsList }) {
   const [sports, setSports] = useState([]);
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setSports(sportsList.results);
-    getSportsData();
   }, [sportsList]);
-  function getSportsData() {
-    sports.forEach((sport) => {
-      console.log(sport);
-      console.log(
-        get(`league?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`)
-      );
+  useEffect(() => {
+    getSportsData();
+  }, [sports]);
+  async function getSportsData() {
+    const results = await Promise.all(
+      sports.map((sport) =>
+        getSportDataAPI(
+          `events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`
+        ).then((response) => {
+          return {
+            [sport.sport_id]: response,
+          };
+        })
+      )
+    );
+    let d = { ...data };
+    results.forEach((result) => {
+      d = {
+        ...result,
+        ...d,
+      };
     });
+    setData(d);
+    setIsLoading(false);
   }
-  function get(uri) {
+  async function getSportDataAPI(uri) {
     let config = {
       method: "GET",
       maxBodyLength: Infinity,
-      url: `https://api.b365api.com/v3/${uri}`,
+      url: `https://api.b365api.com/v1/${uri}`,
       headers: {},
     };
-
-    axios
-      .request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      let response = await axios.request(config);
+      if (response && response.data) {
+        return response.data;
+      } else {
+        return {};
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   let leauges = 12;
   return (
@@ -106,14 +124,26 @@ function Sidebar({ sportsList }) {
         </Stack>
       </Box>
       {/* Sports Menus */}
-      <Accordion allowMultiple color={"white"} padding={"0px 20px"}>
-        {sports &&
-          sports.map((sport) => {
-            return (
-              <MenuItems data={test} Title={sport.Name} Image={sport.Image} />
-            );
-          })}
-      </Accordion>
+
+      {isLoading ? (
+        <div>loading</div>
+      ) : (
+        <Accordion allowMultiple color={"white"} padding={"0px 20px"}>
+          {sports &&
+            sports.map((sport) => {
+              if (data[sport.sport_id]) {
+                console.log(data["1"]);
+                return (
+                  <MenuItems
+                    data={data[sport.sport_id]}
+                    Title={sport.Name}
+                    Image={sport.Image}
+                  />
+                );
+              }
+            })}
+        </Accordion>
+      )}
     </Stack>
   );
 }
