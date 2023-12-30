@@ -129,11 +129,13 @@ import {
   Th,
   Td,
   CircularProgress,
+  Tooltip,
 } from "@chakra-ui/react";
 
 const Event = () => {
   const [latestOdds, setLatestOdds] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tooltipOpen, setTooltipOpen] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -164,7 +166,8 @@ const Event = () => {
   }, []);
 
   return (
-    <Box p="4">
+    <>
+    <Box p="4" bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"} border={"1px solid #656EF5"}>
       <h1>Odds Table</h1>
       {loading ? (
         <CircularProgress isIndeterminate color="teal.500" />
@@ -178,17 +181,27 @@ const Event = () => {
               <Th>Draw Odds</Th>
               <Th>Away Odds</Th>
               <Th>Score</Th>
-              <Th>Time</Th>
+              <Th></Th>
               <Th>Time</Th>
             </Tr>
           </Thead>
+          
           <Tbody>
+            <Tooltip label placement="bottom"  isOpen={tooltipOpen} 
+              closeDelay={50000}
+              openDelay={100}
+              key={latestOdds.latestOdd.id} 
+              onAnimationStart={() =>
+                setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded , force: !prev.force}))}
+                
+                >
             <Tr
-              key={latestOdds.latestOdd.id}
-              onClick={() =>
-                setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded }))
-              }
+              // key={latestOdds.latestOdd.id}
+              // onClick={() =>
+              //   setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded }))
+              // }
             >
+              
               <Td>{latestOdds.source}</Td>
               <Td>{latestOdds.latestOdd.id}</Td>
               <Td>{latestOdds.latestOdd.home_od}</Td>
@@ -198,7 +211,9 @@ const Event = () => {
               <Td>{latestOdds.latestOdd.time_str}</Td>
               <Td>{Date(latestOdds.latestOdd.add_time * 1000)}</Td>
             </Tr>
+            </Tooltip>
             {latestOdds.expanded && (
+              
               <Tr>
                 <Td colSpan={7}>
                   <Table variant="simple">
@@ -232,6 +247,167 @@ const Event = () => {
         </Table>
       )}
     </Box>
+    <Box p="4" bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"} border={"1px solid #656EF5"}>
+      <h1>Odds Table</h1>
+      {loading ? (
+        <CircularProgress isIndeterminate color="teal.500" />
+      ) : (
+        <Table variant="striped" colorScheme="teal" style={{ width: "100%" }}>
+          <Thead>
+            <Tr>
+              <Th>Source</Th>
+              <Th>ID</Th>
+              <Th>Home Odds</Th>
+              <Th>Draw Odds</Th>
+              <Th>Away Odds</Th>
+              <Th>Score</Th>
+              <Th></Th>
+              <Th>Time</Th>
+            </Tr>
+          </Thead>
+          
+          <Tbody>
+            <Tooltip label placement="bottom"  isOpen={tooltipOpen} 
+              closeDelay={50000}
+              openDelay={100}
+              key={latestOdds.latestOdd.id} 
+              onAnimationStart={() =>
+                setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded , force: !prev.force}))}
+                
+                >
+            <Tr
+              // key={latestOdds.latestOdd.id}
+              // onClick={() =>
+              //   setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded }))
+              // }
+            >
+              
+              <Td>{latestOdds.source}</Td>
+              <Td>{latestOdds.latestOdd.id}</Td>
+              <Td>{latestOdds.latestOdd.home_od}</Td>
+              <Td>{latestOdds.latestOdd.draw_od}</Td>
+              <Td>{latestOdds.latestOdd.away_od}</Td>
+              <Td>{latestOdds.latestOdd.ss}</Td>
+              <Td>{latestOdds.latestOdd.time_str}</Td>
+              <Td>{Date(latestOdds.latestOdd.add_time * 1000)}</Td>
+            </Tr>
+            </Tooltip>
+            {latestOdds.expanded && (
+              
+              <Tr>
+                <Td colSpan={7}>
+                  <Table variant="simple">
+                    <Thead>
+                      <Tr>
+                        <Th>ID</Th>
+                        <Th>Home Odds</Th>
+                        <Th>Draw Odds</Th>
+                        <Th>Away Odds</Th>
+                        <Th>Score</Th>
+                        <Th>Time</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {latestOdds.oddsWithoutLatest.map((odd) => (
+                        <Tr key={odd.id}>
+                          <Td>{odd.id}</Td>
+                          <Td>{odd.home_od}</Td>
+                          <Td>{odd.draw_od}</Td>
+                          <Td>{odd.away_od}</Td>
+                          <Td>{odd.ss}</Td>
+                          <Td>{odd.time_str}</Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </Table>
+                </Td>
+              </Tr>
+            )}
+          </Tbody>
+        </Table>
+      )}
+    </Box>
+    <Box p="4" bg={"#fff"} borderRadius={"10px"} padding={"10px"} margin={"10px"} border={"1px solid #656EF5"}>
+      <h1>Odds Table</h1>
+      {loading ? (
+        <CircularProgress isIndeterminate color="teal.500" />
+      ) : (
+        <Table variant="striped" colorScheme="teal" style={{ width: "100%" }}>
+          <Thead>
+            <Tr>
+              <Th>Source</Th>
+              <Th>ID</Th>
+              <Th>Home Odds</Th>
+              <Th>Draw Odds</Th>
+              <Th>Away Odds</Th>
+              <Th>Score</Th>
+              <Th></Th>
+              <Th>Time</Th>
+            </Tr>
+          </Thead>
+          
+          <Tbody>
+            <Tooltip label placement="bottom"
+              closeDelay={50000}
+              openDelay={100}
+              key={latestOdds.latestOdd.id} 
+              onAnimationStart={() =>
+                setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded , force: !prev.force}))}
+                
+                >
+            <Tr
+              // key={latestOdds.latestOdd.id}
+              // onClick={() =>
+              //   setLatestOdds((prev) => ({ ...prev, expanded: !prev.expanded }))
+              // }
+            >
+              
+              <Td>{latestOdds.source}</Td>
+              <Td>{latestOdds.latestOdd.id}</Td>
+              <Td>{latestOdds.latestOdd.home_od}</Td>
+              <Td>{latestOdds.latestOdd.draw_od}</Td>
+              <Td>{latestOdds.latestOdd.away_od}</Td>
+              <Td>{latestOdds.latestOdd.ss}</Td>
+              <Td>{latestOdds.latestOdd.time_str}</Td>
+              <Td>{Date(latestOdds.latestOdd.add_time * 1000)}</Td>
+            </Tr>
+            </Tooltip>
+            {latestOdds.expanded && (
+              
+              <Tr>
+                <Td colSpan={7}>
+                  <Table variant="simple">
+                    <Thead>
+                      <Tr>
+                        <Th>ID</Th>
+                        <Th>Home Odds</Th>
+                        <Th>Draw Odds</Th>
+                        <Th>Away Odds</Th>
+                        <Th>Score</Th>
+                        <Th>Time</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {latestOdds.oddsWithoutLatest.map((odd) => (
+                        <Tr key={odd.id}>
+                          <Td>{odd.id}</Td>
+                          <Td>{odd.home_od}</Td>
+                          <Td>{odd.draw_od}</Td>
+                          <Td>{odd.away_od}</Td>
+                          <Td>{odd.ss}</Td>
+                          <Td>{odd.time_str}</Td>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </Table>
+                </Td>
+              </Tr>
+            )}
+          </Tbody>
+        </Table>
+      )}
+    </Box>
+    </>
   );
 };
 
