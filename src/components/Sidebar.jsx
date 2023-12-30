@@ -18,6 +18,7 @@ import axios from "axios";
 function Sidebar({ sportsList }) {
   const [sports, setSports] = useState([]);
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setSports(sportsList.results);
@@ -26,19 +27,28 @@ function Sidebar({ sportsList }) {
     getSportsData();
   }, [sports]);
   async function getSportsData() {
-    sports.forEach(async (sport) => {
-      if (!data[sport.sport_id]) {
-        let result = await get(
-          `league?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`
-        );
-        if (result) {
-          let d = { ...{ [sport.sport_id]: result }, ...data };
-          setData(d);
-        }
-      }
+    const results = await Promise.all(
+      sports.map((sport) =>
+        getSportDataAPI(
+          `events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`
+        ).then((response) => {
+          return {
+            [sport.sport_id]: response,
+          };
+        })
+      )
+    );
+    let d = { ...data };
+    results.forEach((result) => {
+      d = {
+        ...result,
+        ...d,
+      };
     });
+    setData(d);
+    setIsLoading(false);
   }
-  async function get(uri) {
+  async function getSportDataAPI(uri) {
     let config = {
       method: "GET",
       maxBodyLength: Infinity,
@@ -114,20 +124,26 @@ function Sidebar({ sportsList }) {
         </Stack>
       </Box>
       {/* Sports Menus */}
-      <Accordion allowMultiple color={"white"} padding={"0px 20px"}>
-        {sports &&
-          sports.map((sport) => {
-            if (data[sport.sport_id]) {
-              return (
-                <MenuItems
-                  data={data[sport.sport_id]}
-                  Title={sport.Name}
-                  Image={sport.Image}
-                />
-              );
-            }
-          })}
-      </Accordion>
+
+      {isLoading ? (
+        <div>loading</div>
+      ) : (
+        <Accordion allowMultiple color={"white"} padding={"0px 20px"}>
+          {sports &&
+            sports.map((sport) => {
+              if (data[sport.sport_id]) {
+                console.log(data["1"]);
+                return (
+                  <MenuItems
+                    data={data[sport.sport_id]}
+                    Title={sport.Name}
+                    Image={sport.Image}
+                  />
+                );
+              }
+            })}
+        </Accordion>
+      )}
     </Stack>
   );
 }
