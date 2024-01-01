@@ -147,9 +147,7 @@ function HotMatches({ upcomingEvents, sportsList }) {
                       </Text>
                     </Stack>
                     <Flex gap={"5px"}>
-                      <BookMaker id={"0"} per={"1.5"} img={"1xBet"} />
-                      <BookMaker id={"0"} per={"1.5"} img={"1xBet"} />
-                      <BookMaker id={"0"} per={"1.5"} img={"1xBet"} />
+                      <BookMaker id={event.id} />
                     </Flex>
                   </HStack>
                 </Stack>

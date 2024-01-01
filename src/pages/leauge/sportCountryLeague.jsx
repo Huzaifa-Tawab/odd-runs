@@ -19,7 +19,6 @@ function SportCountryLeague() {
   const [sport, setCurrentSport] = useState(null);
 
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     if (
@@ -108,7 +107,13 @@ function SportCountryLeague() {
       {mobileView ? <></> : <Sidebar sportsList={sports} />}
       <Box w={mobileView ? "100vw" : "80vw"}>
         <NavBar />
-        <HStack alignItems={"end"}>
+        <HStack
+          alignItems={"end"}
+          bg={"white"}
+          borderRadius={"16px"}
+          margin={"5px"}
+          padding={"10px"}
+        >
           <Box
             w={mobileView ? "100%" : "80%"}
             overflowY={"scroll"}
@@ -127,90 +132,120 @@ function SportCountryLeague() {
             }}
           >
             <>
-              {params && (
-                <>
-                  <div>
-                    {params["sport"]} {">"} {params["country"]} {">"}
-                    {params["league"]}
-                  </div>
-                  <div>{params["league"]} Betting Odds</div>
-                </>
-              )}
               {sport && (
                 <>
-                  <div>
-                    <Img src={SportsIMG[sport.Name]} /> {params["sport"]} /
-                    <Img src={SportsIMG[sport.Name]} /> {params["country"]}/
+                  <HStack>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"#656EF5"}
+                    >
+                      {params["sport"]}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"black"}
+                    >
+                      {">"}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"#656EF5"}
+                    >
+                      {params["country"]}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"black"}
+                    >
+                      {">"}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"black"}
+                    >
+                      {params["league"]}
+                    </Text>
+                  </HStack>
+                  <Text
+                    marginTop={"10px"}
+                    fontSize={"22px"}
+                    textStyle={"medium"}
+                    color={"black"}
+                  >
                     {params["league"]}
-                  </div>
+                  </Text>
                 </>
               )}
               {events &&
                 events.map((event) => {
-                  console.log(event);
                   return (
-                    <div key={event.id}>
-                      <Stack gap={"15px"} margin={"10px"}>
-                        <Flex justifyContent={"space-between"}>
-                          <Text
-                            textAlign={"center"}
-                            padding={"8px 15px"}
-                            borderRadius={"30px"}
-                            color={"#656EF5"}
-                            bg={"#656FF513"}
-                            fontSize={"13px"}
-                            textStyle={"medium"}
-                          >
-                            {new Date(event.time * 1000).toLocaleTimeString()}
-                          </Text>
-                        </Flex>
-                        <HStack
-                          border={"1px solid #656EF5"}
-                          h={"80px"}
-                          borderRadius={"8px"}
-                          padding={"5px"}
-                          justifyContent={"space-between"}
-                          alignItems={"center"}
-                          margin={"10px 0px 10px 0px"}
-                        >
-                          <Flex gap={"10px"} marginLeft={"20px"}>
+                    console.log(event),
+                    (
+                      <div key={event.id}>
+                        <Stack gap={"15px"} margin={"10px"}>
+                          <Flex justifyContent={"space-between"}>
                             <Text
-                              gap={"5px"}
-                              display={"flex"}
-                              alignItems={"center"}
-                              fontSize={"16px"}
-                              textStyle={"medium"}
-                            >
-                              {event.home.name}
-                              <Img src={getTeamUrl(event.home.image_id)} />
-                            </Text>
-                            <Text
-                              textStyle={"bold"}
-                              fontSize={"16px"}
+                              textAlign={"center"}
+                              padding={"8px 15px"}
+                              borderRadius={"30px"}
                               color={"#656EF5"}
-                            >
-                              0 : 2{" "}
-                            </Text>
-                            <Text
-                              gap={"5px"}
-                              display={"flex"}
-                              alignItems={"center"}
-                              fontSize={"16px"}
+                              bg={"#656FF513"}
+                              fontSize={"13px"}
                               textStyle={"medium"}
                             >
-                              <Img src={getTeamUrl(event.away.image_id)} />
-                              {event.away.name}
+                              {new Date(event.time * 1000).toLocaleTimeString()}
                             </Text>
                           </Flex>
-                          <Flex gap={"5px"}>
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={1} per={2.82} />
-                          </Flex>
-                        </HStack>
-                      </Stack>
-                    </div>
+                          <HStack
+                            border={"1px solid #656EF5"}
+                            h={"80px"}
+                            borderRadius={"8px"}
+                            padding={"5px"}
+                            justifyContent={"space-between"}
+                            alignItems={"center"}
+                            margin={"10px 0px 10px 0px"}
+                          >
+                            <Flex gap={"10px"} marginLeft={"20px"}>
+                              <Text
+                                gap={"5px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                fontSize={"16px"}
+                                textStyle={"medium"}
+                              >
+                                {event.home.name}
+                                <Img src={getTeamUrl(event.home.image_id)} />
+                              </Text>
+                              <Text
+                                textStyle={"bold"}
+                                fontSize={"16px"}
+                                color={"#656EF5"}
+                              >
+                                0 : 2{" "}
+                              </Text>
+                              <Text
+                                gap={"5px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                fontSize={"16px"}
+                                textStyle={"medium"}
+                              >
+                                <Img src={getTeamUrl(event.away.image_id)} />
+                                {event.away.name}
+                              </Text>
+                            </Flex>
+                            <Flex gap={"5px"}>
+                              <BookMakerLight id={event.id} />
+                            </Flex>
+                          </HStack>
+                        </Stack>
+                      </div>
+                    )
                   );
                 })}
             </>
