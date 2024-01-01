@@ -1,0 +1,355 @@
+{
+  "bookmakers": [
+    {
+      "name": "Bet365",
+      "image": "/bookmakers/bet365.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Yes", "prematch": "Yes" }
+      }
+    },
+    {
+      "name": "BWin",
+      "image": "/bookmakers/bwin.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "BetFair",
+      "image": "/bookmakers/betfair.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "Betway",
+      "image": "/bookmakers/betway.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "10Bet",
+      "image": "/bookmakers/10bet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Unknown", "prematch": "Unknown" }
+      }
+    },
+    {
+      "name": "Ladbrokes",
+      "image": "/bookmakers/ladbrokes.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "YSB88",
+      "image": "/bookmakers/ysb88.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "WilliamHill",
+      "image": "/bookmakers/williamhill.png",
+      "sports": {
+        "soccer": { "inplay": "Limited", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "Betclic",
+      "image": "/bookmakers/betclic.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Yes" }
+      }
+    },
+    {
+      "name": "Pinnacle",
+      "image": "/bookmakers/pinnacle.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "No" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "PlanetWin365",
+      "image": "/bookmakers/planetwin365.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "188Bet",
+      "image": "/bookmakers/188bet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "UniBet",
+      "image": "/bookmakers/unibet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "BetFred",
+      "image": "/bookmakers/betfred.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "888Sport",
+      "image": "/bookmakers/888sport.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "CloudBet",
+      "image": "/bookmakers/cloudbet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "Part-of", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "Betsson",
+      "image": "/bookmakers/betsson.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "Betdaq",
+      "image": "/bookmakers/betdaq.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "PaddyPower",
+      "image": "/bookmakers/paddypower.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "No" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "SBOBET",
+      "image": "/bookmakers/sbobet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "TitanBet",
+      "image": "/bookmakers/titanbet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "BetAtHome",
+      "image": "/bookmakers/betathome.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "DafaBet",
+      "image": "/bookmakers/dafabet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "No" },
+        "basketball": { "inplay": "Yes", "prematch": "No" },
+        "others": { "inplay": "Part-of", "prematch": "No" }
+      }
+    },
+    {
+      "name": "Marathonbet",
+      "image": "/bookmakers/marathonbet.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "BetVictor",
+      "image": "/bookmakers/betvictor.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "Everygame",
+      "image": "/bookmakers/everygame.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "Interwetten",
+      "image": "/bookmakers/interwetten.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "1XBet",
+      "image": "/bookmakers/1xbet.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "Yes", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "Nitrogen",
+      "image": "/bookmakers/nitrogen.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "Winner",
+      "image": "/bookmakers/winner.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "BetRegal",
+      "image": "/bookmakers/betregal.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "SkyBet",
+      "image": "/bookmakers/skybet.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "MarsBet",
+      "image": "/bookmakers/marsbet.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "Cashpoint",
+      "image": "/bookmakers/cashpoint.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "Macauslot",
+      "image": "/bookmakers/macauslot.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "HKJC",
+      "image": "/bookmakers/hkjc.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "HG",
+      "image": "/bookmakers/hg.png",
+      "sports": {
+        "soccer": { "inplay": "Yes", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    },
+    {
+      "name": "GGBet",
+      "image": "/bookmakers/ggbet.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "Yes" },
+        "basketball": { "inplay": "No", "prematch": "Yes" },
+        "others": { "inplay": "No", "prematch": "Part-of" }
+      }
+    },
+    {
+      "name": "Mansion",
+      "image": "/bookmakers/mansion.png",
+      "sports": {
+        "soccer": { "inplay": "No", "prematch": "No" },
+        "basketball": { "inplay": "No", "prematch": "No" },
+        "others": { "inplay": "No", "prematch": "No" }
+      }
+    }
+  ]
+}

@@ -1,14 +1,16 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Event from "./pages/home/event/event";
+import Event from "./pages/event/event";
 import SportCountryLeague from "./pages/leauge/sportCountryLeague";
+import NewEvent from "./pages/event/NewEvent";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/test" element={<NewEvent />}></Route>
         <Route
           path="/:sport/:country/:league"
           element={<SportCountryLeague />}
