@@ -1,0 +1,52 @@
+{
+  "odds_market": [
+    {
+      "key": "1_1",
+      "value": "1X2"
+    },
+    {
+      "key": "1_2",
+      "value": "Asian Handicap"
+    },
+    {
+      "key": "1_3",
+      "value": "O/U, Goal Line"
+    },
+    {
+      "key": "1_4",
+      "value": "Asian Corners"
+    },
+    {
+      "key": "1_5",
+      "value": "1st Half Asian Handicap "
+    },
+    {
+      "key": "1_6",
+      "value": "1st Half Goal Line"
+    },
+    {
+      "key": "1_7",
+      "value": "1st Half Asian Corners"
+    },
+    {
+      "key": "1_8",
+      "value": "Half Time Result"
+    },
+    {
+      "key": "18_1",
+      "value": "Money Line"
+    },
+    {
+      "key": "18_2",
+      "value": "Spread"
+    },
+    { "key": "18_3", "value": "Total Points" },
+    { "key": "18_7", "value": "Quarter - Winner (2-Way) " },
+    { "key": "18_8", "value": "Quarter - Handicap" },
+    { "key": "18_9", "value": "Quarter - Total (2-Way)" },
+    { "key": "*_1", "value": "Match Winner 2-Way" },
+    { "key": "*_2", "value": "Asian Handicap" },
+    { "key": "*_3", "value": "Over/Under" },
+    { "key": "3_4", "value": "Draw No Bet (Cricket)" }
+  ]
+}

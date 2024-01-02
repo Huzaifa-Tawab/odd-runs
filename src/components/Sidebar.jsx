@@ -132,7 +132,6 @@ function Sidebar({ sportsList }) {
           {sports &&
             sports.map((sport) => {
               if (data[sport.sport_id]) {
-                console.log(data["1"]);
                 return (
                   <MenuItems
                     data={data[sport.sport_id]}

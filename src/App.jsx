@@ -1,21 +1,22 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Event from "./pages/event/event";
 import SportCountryLeague from "./pages/leauge/sportCountryLeague";
-import NewEvent from "./pages/event/NewEvent";
-
+import Event from "./pages/event/Event";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/test" element={<NewEvent />}></Route>
+        <Route
+          path="/:sport/:country/:league/:event_id"
+          element={<Event />}
+        ></Route>
         <Route
           path="/:sport/:country/:league"
           element={<SportCountryLeague />}
         ></Route>
-        <Route path="/event/:id" element={<Event />}></Route>
+        {/* <Route path="/event/:id" element={<Event />}></Route> */}
       </Routes>
     </BrowserRouter>
   );

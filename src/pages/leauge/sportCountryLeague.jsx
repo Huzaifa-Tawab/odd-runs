@@ -19,7 +19,6 @@ function SportCountryLeague() {
   const [sport, setCurrentSport] = useState(null);
 
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     if (
@@ -147,7 +146,6 @@ function SportCountryLeague() {
               )}
               {events &&
                 events.map((event) => {
-                  console.log(event);
                   return (
                     <div key={event.id}>
                       <Stack gap={"15px"} margin={"10px"}>
@@ -164,51 +162,55 @@ function SportCountryLeague() {
                             {new Date(event.time * 1000).toLocaleTimeString()}
                           </Text>
                         </Flex>
-                        <HStack
-                          border={"1px solid #656EF5"}
-                          h={"80px"}
-                          borderRadius={"8px"}
-                          padding={"5px"}
-                          justifyContent={"space-between"}
-                          alignItems={"center"}
-                          margin={"10px 0px 10px 0px"}
+                        <a
+                          href={`/${params["sport"]}/${params["country"]}/${params["league"]}/${event.id}`}
                         >
-                          <Flex gap={"10px"} marginLeft={"20px"}>
-                            <Text
-                              gap={"5px"}
-                              display={"flex"}
-                              alignItems={"center"}
-                              fontSize={"16px"}
-                              textStyle={"medium"}
-                            >
-                              {event.home.name}
-                              <Img src={getTeamUrl(event.home.image_id)} />
-                            </Text>
-                            <Text
-                              textStyle={"bold"}
-                              fontSize={"16px"}
-                              color={"#656EF5"}
-                            >
-                              0 : 2{" "}
-                            </Text>
-                            <Text
-                              gap={"5px"}
-                              display={"flex"}
-                              alignItems={"center"}
-                              fontSize={"16px"}
-                              textStyle={"medium"}
-                            >
-                              <Img src={getTeamUrl(event.away.image_id)} />
-                              {event.away.name}
-                            </Text>
-                          </Flex>
-                          <Flex gap={"5px"}>
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={1} per={2.82} />
-                          </Flex>
-                        </HStack>
+                          <HStack
+                            border={"1px solid #656EF5"}
+                            h={"80px"}
+                            borderRadius={"8px"}
+                            padding={"5px"}
+                            justifyContent={"space-between"}
+                            alignItems={"center"}
+                            margin={"10px 0px 10px 0px"}
+                          >
+                            <Flex gap={"10px"} marginLeft={"20px"}>
+                              <Text
+                                gap={"5px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                fontSize={"16px"}
+                                textStyle={"medium"}
+                              >
+                                {event.home.name}
+                                <Img src={getTeamUrl(event.home.image_id)} />
+                              </Text>
+                              <Text
+                                textStyle={"bold"}
+                                fontSize={"16px"}
+                                color={"#656EF5"}
+                              >
+                                0 : 2{" "}
+                              </Text>
+                              <Text
+                                gap={"5px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                fontSize={"16px"}
+                                textStyle={"medium"}
+                              >
+                                <Img src={getTeamUrl(event.away.image_id)} />
+                                {event.away.name}
+                              </Text>
+                            </Flex>
+                            <Flex gap={"5px"}>
+                              <BookMakerLight id={1} per={2.82} />
+                              <BookMakerLight id={1} per={2.82} />
+                              <BookMakerLight id={1} per={2.82} />
+                              <BookMakerLight id={1} per={2.82} />
+                            </Flex>
+                          </HStack>
+                        </a>
                       </Stack>
                     </div>
                   );
