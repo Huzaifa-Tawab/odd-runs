@@ -107,7 +107,13 @@ function SportCountryLeague() {
       {mobileView ? <></> : <Sidebar sportsList={sports} />}
       <Box w={mobileView ? "100vw" : "80vw"}>
         <NavBar />
-        <HStack alignItems={"end"}>
+        <HStack
+          alignItems={"end"}
+          bg={"white"}
+          borderRadius={"16px"}
+          margin={"5px"}
+          padding={"10px"}
+        >
           <Box
             w={mobileView ? "100%" : "80%"}
             overflowY={"scroll"}
@@ -126,22 +132,53 @@ function SportCountryLeague() {
             }}
           >
             <>
-              {params && (
-                <>
-                  <div>
-                    {params["sport"]} {">"} {params["country"]} {">"}
-                    {params["league"]}
-                  </div>
-                  <div>{params["league"]} Betting Odds</div>
-                </>
-              )}
               {sport && (
                 <>
-                  <div>
-                    <Img src={SportsIMG[sport.Name]} /> {params["sport"]} /
-                    <Img src={SportsIMG[sport.Name]} /> {params["country"]}/
+                  <HStack>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"#656EF5"}
+                    >
+                      {params["sport"]}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"black"}
+                    >
+                      {">"}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"#656EF5"}
+                    >
+                      {params["country"]}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"black"}
+                    >
+                      {">"}
+                    </Text>
+                    <Text
+                      fontSize={"16px"}
+                      textStyle={"medium"}
+                      color={"black"}
+                    >
+                      {params["league"]}
+                    </Text>
+                  </HStack>
+                  <Text
+                    marginTop={"10px"}
+                    fontSize={"22px"}
+                    textStyle={"medium"}
+                    color={"black"}
+                  >
                     {params["league"]}
-                  </div>
+                  </Text>
                 </>
               )}
               {events &&
