@@ -27,6 +27,13 @@ function Sidebar({ sportsList }) {
     getSportsData();
   }, [sports]);
   async function getSportsData() {
+    // let response1 = await axios.get(
+    //   `https://api.b365api.com/v1/events/inplay?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`
+    // );
+    // let response2 = await axios.get(
+    //   `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`
+    // );
+
     const results = await Promise.all(
       sports.map((sport) =>
         getSportDataAPI(
@@ -38,6 +45,7 @@ function Sidebar({ sportsList }) {
         })
       )
     );
+
     let d = { ...data };
     results.forEach((result) => {
       d = {
@@ -136,6 +144,7 @@ function Sidebar({ sportsList }) {
                   <MenuItems
                     data={data[sport.sport_id]}
                     Title={sport.Name}
+                    sport_id={sport.sport_id}
                     Image={sport.Image}
                   />
                 );

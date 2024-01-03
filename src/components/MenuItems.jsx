@@ -12,8 +12,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import countries from "../json/countries";
+import { Link } from "react-router-dom";
 
-const MenuItems = ({ data, Title, Image }) => {
+const MenuItems = ({ data, Title, Image, sport_id }) => {
   const [organizedData, setOrganizedData] = useState({});
 
   useEffect(() => {
@@ -93,10 +94,13 @@ const MenuItems = ({ data, Title, Image }) => {
                 >
                   {Object.entries(info.leagues).map(([leagueName, details]) => (
                     <div key={leagueName}>
-                      <a
-                        href={`/${Title}/${
-                          countries[country] || "World"
-                        }/${leagueName}`}
+                      <Link
+                        to={{
+                          pathName: `/${Title}/${
+                            countries[country] || "World"
+                          }/${leagueName}`,
+                        }}
+                        state={{ sport_id, leagueName }}
                       >
                         <Text
                           padding={"5px"}
@@ -111,7 +115,7 @@ const MenuItems = ({ data, Title, Image }) => {
                             details.length > 1 ? `(${details.length})` : ""
                           }`}
                         </Text>
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </AccordionPanel>

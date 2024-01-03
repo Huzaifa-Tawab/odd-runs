@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import SportCountryLeague from "./pages/leauge/sportCountryLeague";
 import Event from "./pages/event/Event";
+import League from "./pages/leauge/league";
 function App() {
   return (
     <BrowserRouter>
@@ -12,10 +12,7 @@ function App() {
           path="/:sport/:country/:league/:event_id"
           element={<Event />}
         ></Route>
-        <Route
-          path="/:sport/:country/:league"
-          element={<SportCountryLeague />}
-        ></Route>
+        <Route path="/:sport/:country/:league" element={<League />}></Route>
         {/* <Route path="/event/:id" element={<Event />}></Route> */}
       </Routes>
     </BrowserRouter>

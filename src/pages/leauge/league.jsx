@@ -3,7 +3,7 @@ import NavBar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import RightSidebar from "../../components/RightSidebar";
 import axios from "axios";
-import { Route, Link, Routes, useParams } from "react-router-dom";
+import { Route, Link, Routes, useParams, useLocation } from "react-router-dom";
 import { Flex, Img, Stack, Text, Box, HStack } from "@chakra-ui/react";
 import sports from "../../json/sports.json";
 import SportsIMG from "../../json/sportsImg";
@@ -15,8 +15,11 @@ function SportCountryLeague() {
     setMobileView(window.innerWidth < 700);
   };
 
-  const [events, setEvents] = useState([]);
-  const [sport, setCurrentSport] = useState(null);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const { state } = useLocation();
+  const [sport, setCurrentSport] = useState(state.sport_id);
+
+  const [league, setLeague] = useState(state.leagueName);
 
   const params = useParams();
 
@@ -33,35 +36,44 @@ function SportCountryLeague() {
       );
     }
     getUpcomingEvents();
-  }, [params, sport]);
+  }, [params]);
 
   async function getUpcomingEvents() {
     if (sport) {
-      let config = {
-        method: "GET",
-        maxBodyLength: Infinity,
-        url: `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${sport.sport_id}`,
-        headers: {},
-      };
+      let leagueId = "3237";
       try {
-        let response = await axios.request(config);
-        if (response && response.data) {
-          let data = response.data.results;
+        let response = await axios.get(
+          `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${state.sport_id}&league_id=${leagueId}`
+        );
+        let upcomingEventsList = [];
 
-          if (
-            data.some(
-              (res) =>
-                res.league.name.toLowerCase() == params["league"].toLowerCase()
-            )
-          ) {
-            let filter = data.filter(
-              (res) =>
-                res.league.name.toLowerCase() == params["league"].toLowerCase()
-            );
-            setEvents(filter);
+        if (response.status == 200 && response.data) {
+          upcomingEventsList = [...response.data.results];
+          let totalPage = Math.ceil(response.data.pager.total / 50);
+          if (totalPage > 1) {
+            for (let i = 2; i <= totalPage; i++) {
+              let response1 = await axios.get(
+                `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${state.sport_id}&league_id=${leagueId}&page=${i}`
+              );
+              if (response1.status == 200 && response1.data) {
+                upcomingEventsList = [
+                  ...upcomingEventsList,
+                  ...response1.data.results,
+                ];
+              }
+            }
           }
-        } else {
-          return {};
+
+          new Date(event.time * 1000).toLocaleTimeString();
+          if (upcomingEventsList) {
+            upcomingEventsList.sort(function (a, b) {
+              return (
+                new Date(a.time * 1000).toLocaleDateString() -
+                new Date(a.time * 1000).toLocaleDateString()
+              );
+            });
+          }
+          setUpcomingEvents(upcomingEventsList);
         }
       } catch (error) {
         console.log(error);
@@ -181,10 +193,10 @@ function SportCountryLeague() {
                   </Text>
                 </>
               )}
-              {events &&
-                events.map((event) => {
+              {upcomingEvents &&
+                upcomingEvents.map((event) => {
                   return (
-                    <div key={event.id}>
+                    <div>
                       <Stack gap={"15px"} margin={"10px"}>
                         <Flex justifyContent={"space-between"}>
                           <Text
@@ -196,12 +208,23 @@ function SportCountryLeague() {
                             fontSize={"13px"}
                             textStyle={"medium"}
                           >
-                            {new Date(event.time * 1000).toLocaleTimeString()}
+                            {new Date(event.time * 1000).toLocaleDateString(
+                              [],
+                              {
+                                day: "2-digit",
+                                year: "numeric",
+                                month: "short",
+                              }
+                            )}
                           </Text>
                         </Flex>
                         <a
                           href={`/${params["sport"]}/${params["country"]}/${params["league"]}/${event.id}`}
                         >
+                          {new Date(event.time * 1000).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
                           <HStack
                             border={"1px solid #656EF5"}
                             h={"80px"}
@@ -227,7 +250,7 @@ function SportCountryLeague() {
                                 fontSize={"16px"}
                                 color={"#656EF5"}
                               >
-                                0 : 2{" "}
+                                {event.ss != null ? event.ss : "0-0"}
                               </Text>
                               <Text
                                 gap={"5px"}
