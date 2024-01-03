@@ -5,6 +5,7 @@ import cal from "../../assets/Icons/calendar.png";
 import bookmakers from "../../json/bookmakers.json";
 import oddsMarketJson from "../../json/odds_market.json";
 
+let allHomeOddsList = [];
 const EventComponent = (props) => {
   const [oddsMarkets, setOddsMarkets] = useState([]);
   const [odds, setOdds] = useState([]);
@@ -12,6 +13,8 @@ const EventComponent = (props) => {
   const [currentMarket, setCurrentMarket] = useState("1_1");
   const [event, setEvent] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const [isOddNameAsc, setIsOddNameAsc] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +71,7 @@ const EventComponent = (props) => {
               setOddsMarkets(oddsMarketList);
             }
             setOdds(oddResponse);
+            setIsOddNameAsc(true);
           }
           setLoading(false);
 
@@ -109,6 +113,90 @@ const EventComponent = (props) => {
     `https://assets.b365api.com/images/team/s/${image_id}.png`;
   const getFlagUrl = (countryCode) =>
     `https://flagsapi.com/${countryCode.toUpperCase()}/flat/32.png`;
+
+  const checkIfOddUpOrDown = (data, type) => {
+    if (data) {
+      if (type == "home") {
+        if (
+          data[0] &&
+          data[1] &&
+          data[0].home_od &&
+          data[1].home_od &&
+          data[0].home_od != "-" &&
+          data[1].home_od != "-" &&
+          Number(data[0].home_od) > Number(data[1].home_od)
+        ) {
+          return "up";
+        } else {
+          return "down";
+        }
+      } else if (type == "draw") {
+        if (
+          data[0] &&
+          data[1] &&
+          data[0].draw_od &&
+          data[1].draw_od &&
+          data[0].draw_od != "-" &&
+          data[1].draw_od != "-" &&
+          Number(data[0].draw_od) > Number(data[1].draw_od)
+        ) {
+          return "up";
+        } else {
+          return "down";
+        }
+      } else if (type == "away") {
+        if (
+          data[0] &&
+          data[1] &&
+          data[0].away_od &&
+          data[1].away_od &&
+          data[0].away_od != "-" &&
+          data[1].away_od != "-" &&
+          Number(data[0].away_od) > Number(data[1].away_od)
+        ) {
+          return "up";
+        } else {
+          return "down";
+        }
+      }
+    }
+  };
+
+  const oddMovement = (data, type) => {
+    if (data) {
+      if (type == "home") {
+        let openingOdds = {};
+        if (data.some((d) => d.time_str == "00:00")) {
+          openingOdds = data.find((d) => d.time_str == "00:00");
+          console.log(openingOdds);
+        }
+        return (
+          <>
+            <div>
+              opening odds
+              {Object.keys(openingOdds)}
+            </div>
+          </>
+        );
+      }
+    }
+  };
+
+  useEffect(() => {
+    // if (odds) {
+    //   if (isOddNameAsc) {
+    //     let newodds = odds.sort((a, b) => {
+    //       if (Object.keys(a)[0] > Object.keys(b)[0]) {
+    //         return a;
+    //       } else {
+    //         return b;
+    //       }
+    //     });
+    //     setOdds(newodds);
+    //   } else {
+    //   }
+    // }
+  }, [isOddNameAsc]);
 
   return (
     <Box p="4" bg={"white"} borderRadius={"12px"} margin={"5px"}>
@@ -165,7 +253,6 @@ const EventComponent = (props) => {
       {odds &&
         oddsMarkets &&
         oddsMarkets.map((market) => {
-          console.log(market);
           if (
             market &&
             oddsMarketJson.odds_market.some((m) => m.key == market)
@@ -174,6 +261,7 @@ const EventComponent = (props) => {
               <>
                 <div
                   onClick={() => {
+                    allHomeOddsList = [];
                     setCurrentMarket(market);
                   }}
                 >
@@ -186,6 +274,7 @@ const EventComponent = (props) => {
             );
           }
         })}
+      <div onClick={() => sortOddName}>sort arrow for odds name</div>
       {odds &&
         odds.map((odd) => {
           let oddName = "";
@@ -208,30 +297,102 @@ const EventComponent = (props) => {
               data = oddData[currentMarket];
             }
 
-            return (
-              <>
-                {data && (
-                  <>
-                    {bookmakers &&
-                      bookmakers.bookmakers.some(
-                        (bm) => bm.name == oddName
-                      ) && (
-                        <Img
-                          src={
-                            bookmakers.bookmakers.find(
-                              (bm) => bm.name == oddName
-                            ).image
-                          }
-                        />
-                      )}
-                    <div key={oddName}>{oddName}</div>
-                    ---------
-                  </>
-                )}
-              </>
-            );
+            if (currentMarket == "1_1") {
+              return (
+                <>
+                  {data && data.length > 0 && (
+                    <>
+                      {!allHomeOddsList.some((s) =>
+                        s.hasOwnProperty(oddName)
+                      ) &&
+                        (allHomeOddsList = [
+                          ...allHomeOddsList,
+                          { [oddName]: data[0].home_od },
+                        ])}
+                      {/* setAllHomeOddsList */}
+                      {/* {!isNaN(data[0].home_od) &&
+                        Number(data[0].home_od) > highestHomeOdd &&
+                        setHighestHomeOdd(Number(data[0].home_od))}
+                      {!isNaN(data[0].away_od) &&
+                        Number(data[0].away_od) > highestAwayOdd &&
+                        setHighestAwayOdd(Number(data[0].away_od))}
+                      {!isNaN(data[0].draw_od) &&
+                        Number(data[0].draw_od) > highestDrawOdd &&
+                        setHighestDrawOdd(Number(data[0].draw_od))} */}
+                      {bookmakers &&
+                        bookmakers.bookmakers.some(
+                          (bm) => bm.name == oddName
+                        ) && (
+                          <Img
+                            src={
+                              bookmakers.bookmakers.find(
+                                (bm) => bm.name == oddName
+                              ).image
+                            }
+                          />
+                        )}
+                      {oddName} ............
+                      {checkIfOddUpOrDown(data, "home")}
+                      {/* {oddMovement(data, "home")} */}
+                      {data[0] && !isNaN(data[0].home_od)
+                        ? Number(data[0].home_od).toFixed(2)
+                        : data[0].home_od}
+                      /{checkIfOddUpOrDown(data, "draw")}
+                      {data[0] && !isNaN(data[0].draw_od)
+                        ? Number(data[0].draw_od).toFixed(2)
+                        : data[0].draw_od}{" "}
+                      /{checkIfOddUpOrDown(data, "away")}
+                      {data[0] && !isNaN(data[0].away_od)
+                        ? Number(data[0].away_od).toFixed(2)
+                        : data[0].away_od}
+                    </>
+                  )}
+                </>
+              );
+            } else if (currentMarket == "1_2") {
+              return (
+                <>
+                  {data && data.length > 0 && (
+                    <>
+                      {bookmakers &&
+                        bookmakers.bookmakers.some(
+                          (bm) => bm.name == oddName
+                        ) && (
+                          <Img
+                            src={
+                              bookmakers.bookmakers.find(
+                                (bm) => bm.name == oddName
+                              ).image
+                            }
+                          />
+                        )}
+                      {oddName} ............ /{data[0] && data[0].handicap}/
+                      {checkIfOddUpOrDown(data, "home")}
+                      {/* {oddMovement(data, "home")} */}
+                      {data[0] && !isNaN(data[0].home_od)
+                        ? Number(data[0].home_od).toFixed(2)
+                        : data[0].home_od}
+                      /{checkIfOddUpOrDown(data, "away")}
+                      {data[0] && !isNaN(data[0].away_od)
+                        ? Number(data[0].away_od).toFixed(2)
+                        : data[0].away_od}
+                    </>
+                  )}
+                </>
+              );
+            }
           }
         })}
+      maxhomeod
+      <div>
+        {Math.max(
+          ...allHomeOddsList.map((od) => {
+            return Object.entries(od).map(([key, value]) => {
+              return Number(value);
+            });
+          })
+        )}
+      </div>
     </Box>
   );
 };
