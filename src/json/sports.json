@@ -4,37 +4,37 @@
     {
       "sport_id": "1",
       "Name": "Football",
-      "Image": "/sports/football.png"
+      "Image": "/sports/football.svg"
     },
     {
       "sport_id": "18",
       "Name": "Basketball",
-      "Image": "/sports/nba.svg"
+      "Image": "/sports/basketball.svg"
     },
     {
       "sport_id": "16",
       "Name": "Baseball",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/baseball.svg"
     },
     {
       "sport_id": "17",
       "Name": "Ice Hockey",
-      "Image": "/sports/tennis.svg"
+      "Image": "/sports/icehockey.svg"
     },
     {
       "sport_id": "13",
       "Name": "Tennis",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/tennis.svg"
     },
     {
       "sport_id": "12",
       "Name": "American Football",
-      "Image": "/sports/football.png"
+      "Image": "/sports/amfootball.svg"
     },
     {
       "sport_id": "9",
       "Name": "Boxing",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/boxing.svg"
     },
     {
       "sport_id": "3",
@@ -44,32 +44,32 @@
     {
       "sport_id": "15",
       "Name": "Darts",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/dart.svg"
     },
     {
       "sport_id": "151",
       "Name": "E-sports",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/esport.svg"
     },
     {
       "sport_id": "83",
       "Name": "Futsal",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/futsal.svg"
     },
     {
       "sport_id": "162",
       "Name": "MMA",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/mma.svg"
     },
     {
       "sport_id": "14",
       "Name": "Snooker",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/snooker.svg"
     },
     {
       "sport_id": "92",
       "Name": "Table Tennis",
-      "Image": "/sports/cricket.svg"
+      "Image": "/sports/ttennis.svg"
     }
   ]
 }

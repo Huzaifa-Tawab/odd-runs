@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 
 const BookMaker = ({ id }) => {
   const [highestOdds, setHighestOdds] = useState({
-    home: null,
-    draw: null,
-    away: null,
-    source: null,
+    home: 0,
+    draw: 0,
+    away: 0,
+    source: "none",
   });
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const BookMaker = ({ id }) => {
         let highestHomeOdds = 0;
         let highestDrawOdds = 0;
         let highestAwayOdds = 0;
-        let highestHomeSource = null;
-        let highestDrawSource = null;
-        let highestAwaySource = null;
+        let highestHomeSource = "none";
+        let highestDrawSource = "none";
+        let highestAwaySource = "none";
 
         // Loop through bookmakers
         bookmakers.forEach((bookmaker) => {

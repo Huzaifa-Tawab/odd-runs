@@ -83,7 +83,7 @@
     },
     {
       "name": "Pinnacle",
-      "image": "/bookmakers/pinnacle.png",
+      "image": "/bookmakers/pinnaclessports.jpeg",
       "sports": {
         "soccer": { "inplay": "No", "prematch": "No" },
         "basketball": { "inplay": "No", "prematch": "No" },
@@ -92,7 +92,7 @@
     },
     {
       "name": "PlanetWin365",
-      "image": "/bookmakers/planetwin365.png",
+      "image": "/bookmakers/planetwin365.svg",
       "sports": {
         "soccer": { "inplay": "Yes", "prematch": "Yes" },
         "basketball": { "inplay": "Yes", "prematch": "Yes" },
@@ -209,7 +209,7 @@
     },
     {
       "name": "Marathonbet",
-      "image": "/bookmakers/marathonbet.png",
+      "image": "/bookmakers/marathon.png",
       "sports": {
         "soccer": { "inplay": "No", "prematch": "Yes" },
         "basketball": { "inplay": "No", "prematch": "Yes" },
@@ -218,7 +218,7 @@
     },
     {
       "name": "BetVictor",
-      "image": "/bookmakers/betvictor.png",
+      "image": "/bookmakers/betvictor.jpeg",
       "sports": {
         "soccer": { "inplay": "Yes", "prematch": "Yes" },
         "basketball": { "inplay": "Yes", "prematch": "Yes" },

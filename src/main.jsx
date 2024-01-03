@@ -50,7 +50,14 @@ const theme = extendTheme({
       fontWeight: 600,
     },
   },
-  colors,
+  bg: {
+    green:{
+      bg: "26B01A",
+    },
+    red:{
+      bg:"FF0000"
+    }
+  }
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
