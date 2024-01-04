@@ -17,10 +17,7 @@ function SportCountryLeague() {
 
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const { state } = useLocation();
-  const [sport, setCurrentSport] = useState(state.sport_id);
-
-  const [league, setLeague] = useState(state.leagueName);
-
+  const [sport, setCurrentSport] = useState();
   const params = useParams();
 
   useEffect(() => {
@@ -40,10 +37,9 @@ function SportCountryLeague() {
 
   async function getUpcomingEvents() {
     if (sport) {
-      let leagueId = "3237";
       try {
         let response = await axios.get(
-          `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${state.sport_id}&league_id=${leagueId}`
+          `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${state.sport_id}&league_id=${state.league_id}`
         );
         let upcomingEventsList = [];
 
@@ -53,7 +49,7 @@ function SportCountryLeague() {
           if (totalPage > 1) {
             for (let i = 2; i <= totalPage; i++) {
               let response1 = await axios.get(
-                `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${state.sport_id}&league_id=${leagueId}&page=${i}`
+                `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${state.sport_id}&league_id=${state.league_id}&page=${i}`
               );
               if (response1.status == 200 && response1.data) {
                 upcomingEventsList = [

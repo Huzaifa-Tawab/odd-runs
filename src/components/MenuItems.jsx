@@ -92,32 +92,39 @@ const MenuItems = ({ data, Title, Image, sport_id }) => {
                   borderRadius={"20px"}
                   pb={4}
                 >
-                  {Object.entries(info.leagues).map(([leagueName, details]) => (
-                    <div key={leagueName}>
-                      <Link
-                        to={{
-                          pathName: `/${Title}/${
-                            countries[country] || "World"
-                          }/${leagueName}`,
-                        }}
-                        state={{ sport_id, leagueName }}
-                      >
-                        <Text
-                          padding={"5px"}
-                          margin={"5px 0px"}
-                          borderRadius={"20px"}
-                          bg={"#656EF51A"}
-                          textAlign={"center"}
-                          fontSize={"10px"}
-                          textStyle={"regular"}
-                        >
-                          {`${leagueName} ${
-                            details.length > 1 ? `(${details.length})` : ""
-                          }`}
-                        </Text>
-                      </Link>
-                    </div>
-                  ))}
+                  {Object.entries(info.leagues).map(([leagueName, details]) => {
+                    let league_id = "3237";
+                    return (
+                      <>
+                        (
+                        <div>
+                          {console.log("-----------")}
+                          {console.log(details)}
+                          <Link
+                            to={`/${Title}/${
+                              countries[country] || "World"
+                            }/${leagueName}`}
+                            state={{ sport_id, league_id }}
+                          >
+                            <Text
+                              padding={"5px"}
+                              margin={"5px 0px"}
+                              borderRadius={"20px"}
+                              bg={"#656EF51A"}
+                              textAlign={"center"}
+                              fontSize={"10px"}
+                              textStyle={"regular"}
+                            >
+                              {`${leagueName} ${
+                                details.length > 1 ? `(${details.length})` : ""
+                              }`}
+                            </Text>
+                          </Link>
+                        </div>
+                        )
+                      </>
+                    );
+                  })}
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
