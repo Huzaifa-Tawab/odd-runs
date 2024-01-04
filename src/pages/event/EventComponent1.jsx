@@ -30,10 +30,11 @@ const EventComponent = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let event_id = "7217694" || props.params["event_id"];
-
+      let event_id = props.params["event_id"];
+      console.log(props.params["event_id"]);
       try {
         if (event_id) {
+          console.log(event_id);
           let eventResponse = await axios.get(
             `https://api.b365api.com/v1/event/view?event_id=${event_id}&token=179024-3d6U7zylacO78f`
           );
@@ -259,8 +260,12 @@ const EventComponent = (props) => {
         </Text>
       </Flex>
       <Flex gap={"25px"} alignItems={"center"} margin={"20px 5px"}>
-        <Text fontSize={"24px"} textStyle={"medium"} display={"flex"} gap={"15px"}>
-       
+        <Text
+          fontSize={"24px"}
+          textStyle={"medium"}
+          display={"flex"}
+          gap={"15px"}
+        >
           {event && event.home && event.home.name}
           {event && event.home && (
             <Img
@@ -273,7 +278,12 @@ const EventComponent = (props) => {
         <Text fontSize={"24px"} textStyle={"medium"}>
           {event && event.ss ? event.ss : "-"}
         </Text>
-        <Text fontSize={"24px"} textStyle={"medium"} display={"flex"} gap={"15px"}>
+        <Text
+          fontSize={"24px"}
+          textStyle={"medium"}
+          display={"flex"}
+          gap={"15px"}
+        >
           {event && event.away && (
             <Img
               w={"32px"}
@@ -304,7 +314,7 @@ const EventComponent = (props) => {
           <Text fontSize={"14px"}>Live Streaming</Text>
         </Flex>
       </HStack>
-      <Flex margin={"10px 3px"} gap={"20px"} w={"100vw"}>
+      <Flex margin={"10px 3px"} gap={"20px"} flexWrap={"wrap"}>
         {odds &&
           oddsMarkets &&
           oddsMarkets.map((market) => {
@@ -314,24 +324,23 @@ const EventComponent = (props) => {
             ) {
               return (
                 <>
-                  <div
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      allHomeOddsList = [];
-                      setCurrentMarket(market);
-                    }}
-                  >
-                    {
-                      oddsMarketJson.odds_market.find((m) => m.key == market)
-                        .value
-                    }
+                  <div style={{ cursor: "pointer" }}>
+                    <Text
+                      onClick={() => {
+                        allHomeOddsList = [];
+                        setCurrentMarket(market);
+                      }}
+                    >
+                      {
+                        oddsMarketJson.odds_market.find((m) => m.key == market)
+                          .value
+                      }
+                    </Text>
                   </div>
                 </>
               );
             }
           })}
-      <div style={{cursor: "pointer"}} onClick={() => sortOddName}>sort arrow for odds name</div>
-
       </Flex>
       <Table border={"1px solid #656EF5"} borderTopRadius={"10px"}>
         <Thead>
@@ -341,6 +350,8 @@ const EventComponent = (props) => {
               borderRight={"1px solid #656EF5"}
               fontSize={"14"}
               textStyle={"regular"}
+              onClick={() => sortOddName}
+              cursor={"pointer"}
             >
               Bookmaker
             </Td>
@@ -443,6 +454,117 @@ const EventComponent = (props) => {
                             </Td>
                             <Td borderRight={"1px solid #656EF5"}>
                               <Text
+                                padding={"5px 10px"}
+                                textStyle={"medium"}
+                                fontSize={"14"}
+                                textAlign={"center"}
+                                borderRadius={"5px"}
+                                bg={
+                                  checkIfOddUpOrDown(data, "home") == "up"
+                                    ? "rgba(38, 176, 26, 0.15)"
+                                    : "rgba(255, 0, 0, 0.15)"
+                                }
+                              >
+                                {" "}
+                                {checkIfOddUpOrDown(data, "home") == "up" ? (
+                                  <ArrowUpIcon />
+                                ) : (
+                                  <ArrowDownIcon />
+                                )}
+                                {data[0] && !isNaN(data[0].home_od)
+                                  ? Number(data[0].home_od).toFixed(2)
+                                  : data[0].home_od}
+                              </Text>
+                            </Td>
+                            <Td borderRight={"1px solid #656EF5"}>
+                              <Text
+                                padding={"5px 10px"}
+                                textStyle={"medium"}
+                                fontSize={"14"}
+                                textAlign={"center"}
+                                borderRadius={"5px"}
+                                bg={
+                                  checkIfOddUpOrDown(data, "home") == "up"
+                                    ? "rgba(38, 176, 26, 0.15)"
+                                    : "rgba(255, 0, 0, 0.15)"
+                                }
+                              >
+                                {" "}
+                                {checkIfOddUpOrDown(data, "draw") == "up" ? (
+                                  <ArrowUpIcon />
+                                ) : (
+                                  <ArrowDownIcon />
+                                )}
+                                {data[0] && !isNaN(data[0].draw_od)
+                                  ? Number(data[0].draw_od).toFixed(2)
+                                  : data[0].draw_od}
+                              </Text>
+                            </Td>
+                            <Td borderRight={"1px solid #656EF5"}>
+                              <Text
+                                padding={"5px 10px"}
+                                textStyle={"medium"}
+                                fontSize={"14"}
+                                textAlign={"center"}
+                                borderRadius={"5px"}
+                                bg={
+                                  checkIfOddUpOrDown(data, "home") == "up"
+                                    ? "rgba(38, 176, 26, 0.15)"
+                                    : checkIfOddUpOrDown(data, "home") == "down"
+                                    ? "rgba(255, 0, 0, 0.15)"
+                                    : "white"
+                                }
+                              >
+                                {checkIfOddUpOrDown(data, "away") == "up" ? (
+                                  <ArrowUpIcon />
+                                ) : (
+                                  <ArrowDownIcon />
+                                )}
+                                {data[0] && !isNaN(data[0].away_od)
+                                  ? Number(data[0].away_od).toFixed(2)
+                                  : data[0].away_od}
+                              </Text>
+                            </Td>
+                            <Td>
+                              <Text fontSize={"14"} textStyle={"regular"}>
+                                100%
+                              </Text>
+                            </Td>
+                          </Tr>
+                        </>
+                      )}
+                    </>
+                  );
+                } else if (currentMarket == "1_2") {
+                  return (
+                    <>
+                      {data && data.length > 0 && (
+                        <>
+                          <Tr>
+                            <Td
+                              textStyle={"regular"}
+                              fontSize={"16"}
+                              borderRight={"1px solid #656EF5"}
+                            >
+                              <Flex gap={"10px"}>
+                                {bookmakers &&
+                                  bookmakers.bookmakers.some(
+                                    (bm) => bm.name == oddName
+                                  ) && (
+                                    <Img
+                                      w={"80px"}
+                                      src={
+                                        bookmakers.bookmakers.find(
+                                          (bm) => bm.name == oddName
+                                        ).image
+                                      }
+                                    />
+                                  )}
+                                <Text>{oddName}</Text>
+                              </Flex>
+                            </Td>
+                            <Td borderRight={"1px solid #656EF5"}>
+                              <Text
                                 h={"30px"}
                                 textStyle={"medium"}
                                 fontSize={"14"}
@@ -518,115 +640,7 @@ const EventComponent = (props) => {
                               </Text>
                             </Td>
                           </Tr>
-                        </>
-                      )}
-                    </>
-                  );
-                } else if (currentMarket == "1_2") {
-                  return (
-                    <>
-                   
-                      {data && data.length > 0 && (
-                        <>
-                    <Tr>
-                      <Td textStyle={"regular"}
-                              fontSize={"16"}
-                              borderRight={"1px solid #656EF5"}>
-                        <Flex gap={"10px"}>
-                        {bookmakers &&
-                            bookmakers.bookmakers.some(
-                              (bm) => bm.name == oddName
-                            ) && (
-                              <Img
-                                w={"80px"}
-                                src={
-                                  bookmakers.bookmakers.find(
-                                    (bm) => bm.name == oddName
-                                  ).image
-                                }
-                              />
-                            )}
-                            <Text>{oddName}</Text>
-                        </Flex>
-                      </Td>
-                      <Td borderRight={"1px solid #656EF5"}>
-                              <Text
-                                h={"30px"}
-                                textStyle={"medium"}
-                                fontSize={"14"}
-                                textAlign={"center"}
-                                borderRadius={"5px"}
-                                bg={
-                                  checkIfOddUpOrDown(data, "home") == "up"
-                                    ? "green"
-                                    : "red"
-                                }
-                              >
-                                {" "}
-                                {checkIfOddUpOrDown(data, "home") == "up" ? (
-                                  <ArrowUpIcon />
-                                ) : (
-                                  <ArrowDownIcon />
-                                )}
-                                {data[0] && !isNaN(data[0].home_od)
-                                  ? Number(data[0].home_od).toFixed(2)
-                                  : data[0].home_od}
-                              </Text>
-                      </Td>
-                            <Td borderRight={"1px solid #656EF5"}>
-                              <Text
-                                h={"30px"}
-                                textStyle={"medium"}
-                                fontSize={"14"}
-                                textAlign={"center"}
-                                borderRadius={"5px"}
-                                bg={
-                                  checkIfOddUpOrDown(data, "draw") == "up"
-                                    ? "green"
-                                    : "red"
-                                }
-                              >
-                                {" "}
-                                {checkIfOddUpOrDown(data, "draw") == "up" ? (
-                                  <ArrowUpIcon />
-                                ) : (
-                                  <ArrowDownIcon />
-                                )}
-                                {data[0] && !isNaN(data[0].draw_od)
-                                  ? Number(data[0].draw_od).toFixed(2)
-                                  : data[0].draw_od}
-                              </Text>
-                            </Td>
-                            <Td borderRight={"1px solid #656EF5"}>
-                              <Text
-                                h={"30px"}
-                                textStyle={"medium"}
-                                fontSize={"14"}
-                                textAlign={"center"}
-                                borderRadius={"5px"}
-                                bg={
-                                  checkIfOddUpOrDown(data, "away") == "up"
-                                    ? "green"
-                                    : "red"
-                                }
-                              >
-                                {checkIfOddUpOrDown(data, "away") == "up" ? (
-                                  <ArrowUpIcon />
-                                ) : (
-                                  <ArrowDownIcon />
-                                )}
-                                {data[0] && !isNaN(data[0].away_od)
-                                  ? Number(data[0].away_od).toFixed(2)
-                                  : data[0].away_od}
-                              </Text>
-                            </Td>
-                            <Td>
-                              <Text fontSize={"14"} textStyle={"regular"}>
-                                100%
-                              </Text>
-                            </Td>
-                            </Tr>
-{/*                         <Td borderRight={"1px solid #656EF5"}>
+                          {/*                         <Td borderRight={"1px solid #656EF5"}>
                               <Text
                                 h={"30px"}
                                 textStyle={"medium"}

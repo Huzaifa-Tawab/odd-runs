@@ -67,6 +67,7 @@ const MenuItems = ({ data, Title, Image, sport_id }) => {
         pb={4}
       >
         {Object.entries(organizedData).map(([country, info]) => (
+          // console.log(info),
           <div key={country}>
             <Accordion allowMultiple>
               <AccordionItem>
@@ -93,35 +94,30 @@ const MenuItems = ({ data, Title, Image, sport_id }) => {
                   pb={4}
                 >
                   {Object.entries(info.leagues).map(([leagueName, details]) => {
-                    let league_id = "3237";
+                    let league_id = details[0].league.id;
+
                     return (
                       <>
-                        (
-                        <div>
-                          {console.log("-----------")}
-                          {console.log(details)}
-                          <Link
-                            to={`/${Title}/${
-                              countries[country] || "World"
-                            }/${leagueName}`}
-                            state={{ sport_id, league_id }}
+                        <Link
+                          to={`/${Title}/${
+                            countries[country] || "World"
+                          }/${leagueName}`}
+                          state={{ sport_id, league_id }}
+                        >
+                          <Text
+                            padding={"5px"}
+                            margin={"5px 0px"}
+                            borderRadius={"20px"}
+                            bg={"#656EF51A"}
+                            textAlign={"center"}
+                            fontSize={"10px"}
+                            textStyle={"regular"}
                           >
-                            <Text
-                              padding={"5px"}
-                              margin={"5px 0px"}
-                              borderRadius={"20px"}
-                              bg={"#656EF51A"}
-                              textAlign={"center"}
-                              fontSize={"10px"}
-                              textStyle={"regular"}
-                            >
-                              {`${leagueName} ${
-                                details.length > 1 ? `(${details.length})` : ""
-                              }`}
-                            </Text>
-                          </Link>
-                        </div>
-                        )
+                            {`${leagueName} ${
+                              details.length > 1 ? `(${details.length})` : ""
+                            }`}
+                          </Text>
+                        </Link>
                       </>
                     );
                   })}

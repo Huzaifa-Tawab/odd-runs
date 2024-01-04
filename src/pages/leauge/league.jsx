@@ -217,10 +217,6 @@ function SportCountryLeague() {
                         <a
                           href={`/${params["sport"]}/${params["country"]}/${params["league"]}/${event.id}`}
                         >
-                          {new Date(event.time * 1000).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
                           <HStack
                             border={"1px solid #656EF5"}
                             h={"80px"}
@@ -230,7 +226,26 @@ function SportCountryLeague() {
                             alignItems={"center"}
                             margin={"10px 0px 10px 0px"}
                           >
-                            <Flex gap={"10px"} marginLeft={"20px"}>
+                            <Flex
+                              gap={"10px"}
+                              marginLeft={"20px"}
+                              alignItems={"center"}
+                            >
+                              <Text
+                                textStyle={"bold"}
+                                fontSize={"16px"}
+                                bg={"#656EF5"}
+                                color={"white"}
+                                padding={"5px"}
+                              >
+                                {new Date(event.time * 1000).toLocaleTimeString(
+                                  [],
+                                  {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  }
+                                )}
+                              </Text>
                               <Text
                                 gap={"5px"}
                                 display={"flex"}
@@ -246,7 +261,7 @@ function SportCountryLeague() {
                                 fontSize={"16px"}
                                 color={"#656EF5"}
                               >
-                                {event.ss != null ? event.ss : "0-0"}
+                                {event.ss != null ? event.ss : "-"}
                               </Text>
                               <Text
                                 gap={"5px"}
@@ -261,9 +276,8 @@ function SportCountryLeague() {
                             </Flex>
                             <Flex gap={"5px"}>
                               <BookMakerLight id={1} per={2.82} />
-                              <BookMakerLight id={1} per={2.82} />
-                              <BookMakerLight id={1} per={2.82} />
-                              <BookMakerLight id={1} per={2.82} />
+                              <BookMakerLight id={"X"} per={2.82} />
+                              <BookMakerLight id={2} per={2.82} />
                             </Flex>
                           </HStack>
                         </a>
