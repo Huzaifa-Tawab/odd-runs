@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Event from "./pages/event/Event";
+import Event from "./pages/event/event";
 import League from "./pages/leauge/league";
 function App() {
   return (
