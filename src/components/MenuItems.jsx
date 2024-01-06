@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import countries from "../json/countries";
 import { Link } from "react-router-dom";
+import uuid from "react-uuid";
 
 const MenuItems = ({ data, Title, Image, sport_id }) => {
   const [organizedData, setOrganizedData] = useState({});
@@ -88,6 +89,7 @@ const MenuItems = ({ data, Title, Image, sport_id }) => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel
+                  key={uuid()}
                   bg={"white"}
                   color={"black"}
                   borderRadius={"20px"}

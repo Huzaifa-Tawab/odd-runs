@@ -14,6 +14,7 @@ import React, { useEffect, useState } from "react";
 import MenuItems from "./MenuItems";
 import test from "../components/test.json";
 import axios from "axios";
+import uuid from "react-uuid";
 
 function Sidebar({ sportsList }) {
   const [sports, setSports] = useState([]);
@@ -142,6 +143,7 @@ function Sidebar({ sportsList }) {
               if (data[sport.sport_id]) {
                 return (
                   <MenuItems
+                    key={uuid()}
                     data={data[sport.sport_id]}
                     Title={sport.Name}
                     sport_id={sport.sport_id}
