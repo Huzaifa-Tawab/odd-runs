@@ -2,15 +2,13 @@ import React, { useRef, useState, useEffect } from "react";
 import NavBar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import RightSidebar from "../../components/RightSidebar";
-import axios from "axios";
-import { Route, Link, Routes, useParams, useLocation } from "react-router-dom";
-import { Flex, Img, Stack, Text, Box, HStack } from "@chakra-ui/react";
+import { useParams, useLocation } from "react-router-dom";
+import { Text, Box, HStack } from "@chakra-ui/react";
 import sports from "../../json/sports.json";
-import SportsIMG from "../../json/sportsImg";
-import BookMakerLight from "../../components/BookMakerLight";
 import LeaguesNextMatches from "./components/nextmatches";
 import LeagueStandings from "./components/standings";
-import LeaguesInplayMatches from "./components/inplay";
+import LeagueEndedEvents from "./components/results";
+
 function SportCountryLeague() {
   const [mobileView, setMobileView] = useState(window.innerWidth < 700);
 
@@ -20,7 +18,7 @@ function SportCountryLeague() {
   const { state } = useLocation();
   const params = useParams();
 
-  const [mode, setMode] = useState("upcoming");
+  const [mode, setMode] = useState("next");
 
   useEffect(() => {
     const debouncedHandleResize = debounce(handleResize, 200);
@@ -45,7 +43,6 @@ function SportCountryLeague() {
       timeout = setTimeout(later, wait);
     };
   }
-  console.log(state);
 
   return (
     <HStack
@@ -131,12 +128,11 @@ function SportCountryLeague() {
                   </Text>
                 </>
               )}
-              <div onClick={() => setMode("upcoming")}>upcoming</div>
-              <div onClick={() => setMode("inplay")}>inplay</div>
-              <div onClick={() => setMode("results")}>results</div>
-              <div onClick={() => setMode("standings")}>standings</div>
+              <div onClick={() => setMode("next")}>Next matches</div>
+              <div onClick={() => setMode("results")}>Results</div>
+              <div onClick={() => setMode("standings")}>Standings</div>
 
-              {mode == "upcoming" && (
+              {mode == "next" && (
                 <LeaguesNextMatches
                   sport_id={state.sport_id}
                   league_id={state.league_id}
@@ -154,18 +150,19 @@ function SportCountryLeague() {
                   ></LeagueStandings>
                 </>
               )}
-              {mode == "inplay" && (
+
+              {mode == "results" && (
                 <>
-                  <LeaguesInplayMatches
+                  {" "}
+                  <LeagueEndedEvents
                     sport_id={state.sport_id}
                     league_id={state.league_id}
                     sport={params["sport"]}
                     league={params["league"]}
                     country={params["country"]}
-                  ></LeaguesInplayMatches>
+                  ></LeagueEndedEvents>
                 </>
               )}
-              {mode == "results" && <>results</>}
             </>
           </Box>
           {/* Right side */}

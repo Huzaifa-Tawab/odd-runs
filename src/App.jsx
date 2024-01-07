@@ -3,7 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Event from "./pages/event/event";
 import League from "./pages/leauge/league";
+import { useEffect } from "react";
 function App() {
+  useEffect(() => {
+    window.process = {
+      ...window.process,
+    };
+  }, []);
   return (
     <BrowserRouter>
       <Routes>

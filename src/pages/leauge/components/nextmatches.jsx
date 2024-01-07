@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Flex,
@@ -9,51 +9,81 @@ import {
   HStack,
   CircularProgress,
 } from "@chakra-ui/react";
-import sports from "../../../json/sports.json";
 import BookMakerLight from "../../../components/BookMakerLight";
 function LeaguesNextMatches({ sport_id, league_id, sport, country, league }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [nextEvents, setNextEvents] = useState([]);
+  const [nextEventsOdds, setNextEventsOdds] = useState([]);
+
   useEffect(() => {
+    setIsLoading(true);
+    setNextEvents([]);
     getUpcomingEvents();
-  }, [sport, country, league]);
+  }, [sport, country, league, sport_id, league_id]);
 
   async function getUpcomingEvents() {
     if (sport_id) {
       try {
-        let response = await axios.get(
+        let inplayResponse = await axios.get(
+          `https://api.b365api.com/v1/events/inplay?token=179024-3d6U7zylacO78f&sport_id=${sport_id}&league_id=${league_id}`
+        );
+        let upcomingResponse = await axios.get(
           `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${sport_id}&league_id=${league_id}`
         );
-        let upcomingEventsList = [];
+        let nextEventsList = [];
 
-        if (response.status == 200 && response.data) {
-          upcomingEventsList = [...response.data.results];
-          let totalPage = Math.ceil(response.data.pager.total / 50);
+        // if inplay events exists add them
+        if (inplayResponse.status == 200 && inplayResponse.data) {
+          nextEventsList = [...inplayResponse.data.results];
+        }
+
+        // if upcoming events exists add them
+        if (upcomingResponse.status == 200 && upcomingResponse.data) {
+          nextEventsList = [
+            ...nextEventsList,
+            ...upcomingResponse.data.results,
+          ];
+          let totalPage = Math.ceil(upcomingResponse.data.pager.total / 50);
+
+          // if in upcoming events more than one page exist add them
           if (totalPage > 1) {
             for (let i = 2; i <= totalPage; i++) {
               let response1 = await axios.get(
                 `https://api.b365api.com/v1/events/upcoming?token=179024-3d6U7zylacO78f&sport_id=${sport_id}&league_id=${league_id}&page=${i}`
               );
               if (response1.status == 200 && response1.data) {
-                upcomingEventsList = [
-                  ...upcomingEventsList,
-                  ...response1.data.results,
-                ];
+                nextEventsList = [...nextEventsList, ...response1.data.results];
               }
             }
           }
 
-          //   new Date(event.time * 1000).toLocaleTimeString();
-          if (upcomingEventsList) {
-            upcomingEventsList.sort(function (a, b) {
+          // Finding event odds
+          if (nextEventsList) {
+            const oddsResults = await Promise.all(
+              nextEventsList.map((event) =>
+                axios
+                  .get(
+                    `https://api.b365api.com/v2/event/odds/summary?token=179024-3d6U7zylacO78f&event_id=${event.id}`
+                  )
+                  .then((response) => {
+                    return {
+                      [event.id]: response.data.results,
+                    };
+                  })
+              )
+            );
+
+            // sorting events
+            nextEventsList.sort(function (a, b) {
               return (
                 new Date(a.time * 1000).toLocaleDateString() -
                 new Date(a.time * 1000).toLocaleDateString()
               );
             });
+            setNextEventsOdds(oddsResults);
           }
+          setNextEvents(nextEventsList);
           setIsLoading(false);
-          setUpcomingEvents(upcomingEventsList);
         }
       } catch (error) {
         setIsLoading(false);
@@ -65,12 +95,130 @@ function LeaguesNextMatches({ sport_id, league_id, sport, country, league }) {
     `https://assets.b365api.com/images/team/s/${image_id}.png`;
   const getFlagUrl = (countryCode) =>
     `https://flagsapi.com/${countryCode.toUpperCase()}/flat/32.png`;
+
+  const getOdd = (type, eventId) => {
+    let filteredEventOdd = [];
+    if (Object.values(nextEventsOdds.find((odd) => odd[eventId]))) {
+      filteredEventOdd = Object.values(
+        nextEventsOdds.find((odd) => odd[eventId])
+      );
+    }
+
+    if (type == "home") {
+      let list = [];
+      filteredEventOdd.forEach((filtered) => {
+        Object.entries(filtered).forEach((value, key) => {
+          let bookmarker = value[1];
+          if (bookmarker && bookmarker.odds) {
+            if (
+              bookmarker.odds.end &&
+              Object.values(bookmarker.odds.end) &&
+              Object.values(bookmarker.odds.end)[0]
+            ) {
+              let odds = Object.values(bookmarker.odds.end)[0];
+              if (odds.home_od) {
+                list.push(Number(odds.home_od));
+              } else {
+                list.push(0);
+              }
+            }
+          }
+        });
+      });
+      let average = 0;
+      if (list) {
+        average =
+          list.reduce((ac, currentValue) => ac + currentValue, 0) / list.length;
+      }
+
+      return average > 0 ? average.toFixed(2) : "-";
+    } else if (type == "Bs") {
+      let list = [];
+      filteredEventOdd.forEach((filtered) => {
+        Object.entries(filtered).forEach((value, key) => {
+          let bookmarker = value[1];
+          if (bookmarker && bookmarker.odds) {
+            if (
+              bookmarker.odds.end &&
+              Object.values(bookmarker.odds.end) &&
+              Object.values(bookmarker.odds.end)[0]
+            ) {
+              let odds = Object.values(bookmarker.odds.end)[0];
+              if (odds.home_od) {
+                list.push(Number(odds.home_od));
+              } else {
+                list.push(0);
+              }
+            }
+          }
+        });
+      });
+
+      return list && list.length > 0 ? list.length : "-";
+    } else if (type == "draw") {
+      let list = [];
+      filteredEventOdd.forEach((filtered) => {
+        Object.entries(filtered).forEach((value, key) => {
+          let bookmarker = value[1];
+          if (bookmarker && bookmarker.odds) {
+            if (
+              bookmarker.odds.end &&
+              Object.values(bookmarker.odds.end) &&
+              Object.values(bookmarker.odds.end)[0]
+            ) {
+              let odds = Object.values(bookmarker.odds.end)[0];
+              if (odds.draw_od) {
+                list.push(Number(odds.draw_od));
+              } else {
+                list.push(0);
+              }
+            }
+          }
+        });
+      });
+      let average = 0;
+      if (list) {
+        average =
+          list.reduce((ac, currentValue) => ac + currentValue, 0) / list.length;
+      }
+
+      return average > 0 ? average.toFixed(2) : "-";
+    } else if (type == "away") {
+      let list = [];
+      filteredEventOdd.forEach((filtered) => {
+        Object.entries(filtered).forEach((value, key) => {
+          let bookmarker = value[1];
+          if (bookmarker && bookmarker.odds) {
+            if (
+              bookmarker.odds.end &&
+              Object.values(bookmarker.odds.end) &&
+              Object.values(bookmarker.odds.end)[0]
+            ) {
+              let odds = Object.values(bookmarker.odds.end)[0];
+              if (odds.away_od) {
+                list.push(Number(odds.away_od));
+              } else {
+                list.push(0);
+              }
+            }
+          }
+        });
+      });
+      let average = 0;
+      if (list) {
+        average =
+          list.reduce((ac, currentValue) => ac + currentValue, 0) / list.length;
+      }
+
+      return average > 0 ? average.toFixed(2) : "-";
+    }
+  };
   return (
     <>
       {isLoading == false ? (
         <>
-          {upcomingEvents
-            ? upcomingEvents.map((event) => {
+          {nextEvents
+            ? nextEvents.map((event) => {
                 return (
                   <div key={event.id}>
                     <Stack gap={"15px"} margin={"10px"}>
@@ -149,18 +297,38 @@ function LeaguesNextMatches({ sport_id, league_id, sport, country, league }) {
                               {event.away.name}
                             </Text>
                           </Flex>
-                          <Flex gap={"5px"}>
-                            <BookMakerLight id={1} per={2.82} />
-                            <BookMakerLight id={"X"} per={2.82} />
-                            <BookMakerLight id={2} per={2.82} />
-                          </Flex>
+                          {nextEventsOdds &&
+                            nextEventsOdds.some((odd) =>
+                              odd.hasOwnProperty(event.id)
+                            ) && (
+                              <>
+                                <Flex gap={"5px"}>
+                                  <BookMakerLight
+                                    id={1}
+                                    per={getOdd("home", event.id)}
+                                  />
+                                  <BookMakerLight
+                                    id={"X"}
+                                    per={getOdd("draw", event.id)}
+                                  />
+                                  <BookMakerLight
+                                    id={2}
+                                    per={getOdd("away", event.id)}
+                                  />
+                                  <BookMakerLight
+                                    id={"B's"}
+                                    per={getOdd("Bs", event.id)}
+                                  />
+                                </Flex>
+                              </>
+                            )}
                         </HStack>
                       </a>
                     </Stack>
                   </div>
                 );
               })
-            : "No upcoming events"}
+            : "No next events"}
         </>
       ) : (
         <>

@@ -25,7 +25,6 @@ function LeaguesInplayMatches({ sport_id, league_id, sport, country, league }) {
           `https://api.b365api.com/v1/events/inplay?token=179024-3d6U7zylacO78f&sport_id=${sport_id}&league_id=${league_id}`
         );
         let inplayEventsList = [];
-
         if (response.status == 200 && response.data) {
           inplayEventsList = [...response.data.results];
           if (inplayEventsList) {

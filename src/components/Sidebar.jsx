@@ -46,6 +46,7 @@ function Sidebar({ sportsList }) {
         })
       )
     );
+    console.log(results);
 
     let d = { ...data };
     results.forEach((result) => {
